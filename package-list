@@ -1,0 +1,26 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:////PointingToDeclaration/ktor-boost/[root]/index.html
+$dokka.location://deleteResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/delete-result.html
+$dokka.location://deleteResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/delete-result-async.html
+$dokka.location://foldSuspend/kotlin.Result[TypeParam(bounds=[kotlin.Any?])]#kotlin.coroutines.SuspendFunction1[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]#kotlin.coroutines.SuspendFunction1[kotlin.Throwable,TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/ktor-boost/[root]/fold-suspend.html
+$dokka.location://getPlatformName/#/PointingToDeclaration/ktor-boost/[root]/get-platform-name.html
+$dokka.location://getResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/get-result.html
+$dokka.location://getResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/get-result-async.html
+$dokka.location://headResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/head-result.html
+$dokka.location://headResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/head-result-async.html
+$dokka.location://mapSuspend/kotlin.Result[TypeParam(bounds=[kotlin.Any?])]#kotlin.coroutines.SuspendFunction1[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/ktor-boost/[root]/map-suspend.html
+$dokka.location://onFailureSuspend/kotlin.Result[TypeParam(bounds=[kotlin.Any?])]#kotlin.coroutines.SuspendFunction1[kotlin.Throwable,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/on-failure-suspend.html
+$dokka.location://onSuccessSuspend/kotlin.Result[TypeParam(bounds=[kotlin.Any?])]#kotlin.coroutines.SuspendFunction1[TypeParam(bounds=[kotlin.Any?]),kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/on-success-suspend.html
+$dokka.location://optionsResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/options-result.html
+$dokka.location://optionsResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/options-result-async.html
+$dokka.location://patchResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/patch-result.html
+$dokka.location://patchResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/patch-result-async.html
+$dokka.location://postResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/post-result.html
+$dokka.location://postResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/post-result-async.html
+$dokka.location://putResult/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/put-result.html
+$dokka.location://putResultAsync/io.ktor.client.HttpClient#kotlin.String#kotlin.Function1[io.ktor.client.request.HttpRequestBuilder,kotlin.Unit]/PointingToDeclaration/ktor-boost/[root]/put-result-async.html
+$dokka.location://recoverSuspend/kotlin.Result[TypeParam(bounds=[TypeParam(bounds=[kotlin.Any?])])]#kotlin.coroutines.SuspendFunction1[kotlin.Throwable,TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/ktor-boost/[root]/recover-suspend.html
+$dokka.location://runCatchingSuspend/#kotlin.coroutines.SuspendFunction0[TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/ktor-boost/[root]/run-catching-suspend.html
+$dokka.location://runCatchingSuspend/TypeParam(bounds=[kotlin.Any?])#kotlin.coroutines.SuspendFunction1[TypeParam(bounds=[kotlin.Any?]),TypeParam(bounds=[kotlin.Any?])]/PointingToDeclaration/ktor-boost/[root]/run-catching-suspend.html
+

@@ -1,0 +1,419 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>[root]</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg">    <script>var pathToRoot = "../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async></script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+<a class="library-name--link" href="../../index.html">
+                            Ktor Boost
+                    </a>            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ktor-boost:dokkaHtmlPartial/androidMain">android</button>
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":ktor-boost:dokkaHtmlPartial/commonMain">common</button>
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":ktor-boost:dokkaHtmlPartial/desktopMain">desktop</button>
+                <button class="platform-tag platform-selector common-like" data-active="" data-filter=":ktor-boost:dokkaHtmlPartial/iosMain">ios</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="package" id="content" pageids="ktor-boost::////PointingToDeclaration//-965740338">
+  <div class="breadcrumbs"><a href="../index.html">ktor-boost</a><span class="delimiter">/</span><span class="current">[root]</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span><span>Package-level</span></span> <span><span>declarations</span></span></h1>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="FUNCTION,EXTENSION_FUNCTION">Functions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="-1030821671%2FFunctions%2F885215281" anchor-label="deleteResult" id="-1030821671%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-result.html"><span>delete</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1030821671%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="delete-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="delete-result.html"><span class="token function">deleteResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="delete-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP DELETE request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="delete-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1699448051%2FFunctions%2F885215281" anchor-label="deleteResultAsync" id="-1699448051%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="delete-result-async.html"><span>delete</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1699448051%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="delete-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="delete-result-async.html"><span class="token function">deleteResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="delete-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP DELETE request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1056843224%2FFunctions%2F885215281" anchor-label="foldSuspend" id="-1056843224%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="fold-suspend.html"><span>fold</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1056843224%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-suspend.html">R</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="fold-suspend.html">T</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="fold-suspend.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="fold-suspend.html"><span class="token function">foldSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>onSuccess<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token keyword"></span>value<span class="token operator">: </span><a href="fold-suspend.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-suspend.html">R</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">crossinline </span>onFailure<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token keyword"></span>exception<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="fold-suspend.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="fold-suspend.html">R</a></div><div class="brief "><p class="paragraph">Performs a fold operation on the Result, executing <a href="fold-suspend.html">onSuccess</a> if the Result is a success, or <a href="fold-suspend.html">onFailure</a> if the Result is a failure.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1641000951%2FFunctions%2F-965740338" anchor-label="getPlatformName" id="-1641000951%2FFunctions%2F-965740338" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain,:ktor-boost:dokkaHtmlPartial/androidMain,:ktor-boost:dokkaHtmlPartial/desktopMain,:ktor-boost:dokkaHtmlPartial/iosMain"></a>
+          <div class="table-row" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain,:ktor-boost:dokkaHtmlPartial/androidMain,:ktor-boost:dokkaHtmlPartial/desktopMain,:ktor-boost:dokkaHtmlPartial/iosMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain,:ktor-boost:dokkaHtmlPartial/androidMain,:ktor-boost:dokkaHtmlPartial/desktopMain,:ktor-boost:dokkaHtmlPartial/iosMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-platform-name.html"><span>get</span><wbr><span>Platform</span><wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1641000951%2FFunctions%2F-965740338"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted  with-platform-tabs" data-platform-hinted="data-platform-hinted">
+                    <div class="platform-bookmarks-row" data-toggle-list="data-toggle-list"><button class="platform-bookmark" data-filterable-current=":ktor-boost:dokkaHtmlPartial/androidMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/androidMain" data-active="" data-toggle=":ktor-boost:dokkaHtmlPartial/androidMain">android</button><button class="platform-bookmark" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain" data-toggle=":ktor-boost:dokkaHtmlPartial/commonMain">common</button><button class="platform-bookmark" data-filterable-current=":ktor-boost:dokkaHtmlPartial/desktopMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/desktopMain" data-toggle=":ktor-boost:dokkaHtmlPartial/desktopMain">desktop</button><button class="platform-bookmark" data-filterable-current=":ktor-boost:dokkaHtmlPartial/iosMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/iosMain" data-toggle=":ktor-boost:dokkaHtmlPartial/iosMain">ios</button></div>
+<div class="content sourceset-dependent-content" data-togglable=":ktor-boost:dokkaHtmlPartial/androidMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-platform-name.html"><span class="token function">getPlatformName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">expect </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-platform-name.html"><span class="token function">getPlatformName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div><div class="content sourceset-dependent-content" data-togglable=":ktor-boost:dokkaHtmlPartial/desktopMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-platform-name.html"><span class="token function">getPlatformName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div><div class="content sourceset-dependent-content" data-togglable=":ktor-boost:dokkaHtmlPartial/iosMain"><div class="symbol monospace"><span class="token keyword">actual </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="get-platform-name.html"><span class="token function">getPlatformName</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div></div>                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-632769330%2FFunctions%2F885215281" anchor-label="getResult" id="-632769330%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-result.html"><span>get</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-632769330%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="get-result.html"><span class="token function">getResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP GET request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="get-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2020925496%2FFunctions%2F885215281" anchor-label="getResultAsync" id="2020925496%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-result-async.html"><span>get</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2020925496%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="get-result-async.html"><span class="token function">getResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP GET request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1134577980%2FFunctions%2F885215281" anchor-label="headResult" id="-1134577980%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="head-result.html"><span>head</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1134577980%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="head-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="head-result.html"><span class="token function">headResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="head-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP HEAD request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="head-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1520523262%2FFunctions%2F885215281" anchor-label="headResultAsync" id="-1520523262%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="head-result-async.html"><span>head</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1520523262%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="head-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="head-result-async.html"><span class="token function">headResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="head-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP HEAD request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-246094238%2FFunctions%2F885215281" anchor-label="mapSuspend" id="-246094238%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="map-suspend.html"><span>map</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-246094238%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-suspend.html">R</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="map-suspend.html">T</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-suspend.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="map-suspend.html"><span class="token function">mapSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>transform<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token keyword"></span>value<span class="token operator">: </span><a href="map-suspend.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="map-suspend.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="map-suspend.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs a mapping operation on the Result, transforming the value if the Result is a success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="30087337%2FFunctions%2F885215281" anchor-label="onFailureSuspend" id="30087337%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-failure-suspend.html"><span>on</span><wbr><span>Failure</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="30087337%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="on-failure-suspend.html">T</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="on-failure-suspend.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="on-failure-suspend.html"><span class="token function">onFailureSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>action<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token keyword"></span>exception<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="on-failure-suspend.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes a suspend function <a href="on-failure-suspend.html">action</a> if the current result is a failure.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-474458041%2FFunctions%2F885215281" anchor-label="onSuccessSuspend" id="-474458041%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-success-suspend.html"><span>on</span><wbr><span>Success</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-474458041%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="on-success-suspend.html">T</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="on-success-suspend.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="on-success-suspend.html"><span class="token function">onSuccessSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>action<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token keyword"></span>value<span class="token operator">: </span><a href="on-success-suspend.html">T</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="on-success-suspend.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes a suspend function <a href="on-success-suspend.html">action</a> if the current result is a success.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="759456390%2FFunctions%2F885215281" anchor-label="optionsResult" id="759456390%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="options-result.html"><span>options</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="759456390%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="options-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="options-result.html"><span class="token function">optionsResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="options-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP OPTIONS request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="options-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="985204096%2FFunctions%2F885215281" anchor-label="optionsResultAsync" id="985204096%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="options-result-async.html"><span>options</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="985204096%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="options-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="options-result-async.html"><span class="token function">optionsResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="options-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP OPTIONS request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="720889116%2FFunctions%2F885215281" anchor-label="patchResult" id="720889116%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="patch-result.html"><span>patch</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="720889116%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="patch-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="patch-result.html"><span class="token function">patchResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="patch-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP PATCH request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="patch-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1428311894%2FFunctions%2F885215281" anchor-label="patchResultAsync" id="-1428311894%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="patch-result-async.html"><span>patch</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1428311894%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="patch-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="patch-result-async.html"><span class="token function">patchResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="patch-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP PATCH request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-929602556%2FFunctions%2F885215281" anchor-label="postResult" id="-929602556%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="post-result.html"><span>post</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-929602556%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="post-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="post-result.html"><span class="token function">postResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="post-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP POST request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="post-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1193362114%2FFunctions%2F885215281" anchor-label="postResultAsync" id="1193362114%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="post-result-async.html"><span>post</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1193362114%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="post-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="post-result-async.html"><span class="token function">postResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="post-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP POST request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="6993333%2FFunctions%2F885215281" anchor-label="putResult" id="6993333%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="put-result.html"><span>put</span><wbr><span><span>Result</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="6993333%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="put-result.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="put-result.html"><span class="token function">putResult</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="put-result.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Performs an HTTP PUT request synchronously and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a> of type <a href="put-result.html">T</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1640126385%2FFunctions%2F885215281" anchor-label="putResultAsync" id="1640126385%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="put-result-async.html"><span>put</span><wbr><span>Result</span><wbr><span><span>Async</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1640126385%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="put-result-async.html">T</a><span class="token operator">&gt; </span><span data-unresolved-link="io.ktor.client/HttpClient///PointingToDeclaration/">HttpClient</span><span class="token punctuation">.</span><a href="put-result-async.html"><span class="token function">putResultAsync</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">urlString<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">noinline </span>block<span class="token operator">: </span><span class="token keyword"></span><span data-unresolved-link="io.ktor.client.request/HttpRequestBuilder///PointingToDeclaration/">HttpRequestBuilder</span><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator"> = </span>{}</span></span><span class="token punctuation">)</span><span class="token operator">: </span><span data-unresolved-link="kotlinx.coroutines/Deferred///PointingToDeclaration/">Deferred</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="put-result-async.html">T</a><span class="token operator">&gt;</span><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes an asynchronous HTTP PUT request using the provided URL.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="107291633%2FFunctions%2F885215281" anchor-label="recoverSuspend" id="107291633%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="recover-suspend.html"><span>recover</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="107291633%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="recover-suspend.html">R</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="recover-suspend.html">T</a><span class="token operator"> : </span><a href="recover-suspend.html">R</a><span class="token operator">&gt; </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="recover-suspend.html">T</a><span class="token operator">&gt;</span><span class="token punctuation">.</span><a href="recover-suspend.html"><span class="token function">recoverSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>transform<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token keyword"></span>exception<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html">Throwable</a><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="recover-suspend.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="recover-suspend.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Recovers from a failure by executing <a href="recover-suspend.html">transform</a> to create a new value if the Result is a failure.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="900647645%2FFunctions%2F885215281" anchor-label="runCatchingSuspend" id="900647645%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="run-catching-suspend.html"><span>run</span><wbr><span>Catching</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="900647645%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="run-catching-suspend.html">R</a><span class="token operator">&gt; </span><a href="run-catching-suspend.html"><span class="token function">runCatchingSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>block<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="run-catching-suspend.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="run-catching-suspend.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes a suspend function <a href="run-catching-suspend.html">block</a> within a try-catch and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-445005860%2FFunctions%2F885215281" anchor-label="runCatchingSuspend" id="-445005860%2FFunctions%2F885215281" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":ktor-boost:dokkaHtmlPartial/commonMain" data-filterable-set=":ktor-boost:dokkaHtmlPartial/commonMain">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="run-catching-suspend.html"><span>run</span><wbr><span>Catching</span><wbr><span><span>Suspend</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-445005860%2FFunctions%2F885215281"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":ktor-boost:dokkaHtmlPartial/commonMain"><div class="symbol monospace"><span class="token keyword">inline suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="run-catching-suspend.html">T</a><span class="token punctuation">, </span><span class="token keyword"></span><a href="run-catching-suspend.html">R</a><span class="token operator">&gt; </span><a href="run-catching-suspend.html">T</a><span class="token punctuation">.</span><a href="run-catching-suspend.html"><span class="token function">runCatchingSuspend</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">crossinline </span>block<span class="token operator">: </span><span class="token keyword">suspend </span><span class="token keyword"></span><a href="run-catching-suspend.html">T</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="run-catching-suspend.html">R</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="run-catching-suspend.html">R</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Executes a suspend function <a href="run-catching-suspend.html">block</a> on the receiver <a href="run-catching-suspend.html">T</a> within a try-catch and returns the result as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/index.html">Result</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
