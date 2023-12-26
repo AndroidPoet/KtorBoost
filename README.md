@@ -22,8 +22,7 @@
 🚀 Simplifying Ktor for Easier Development.
 </p><br>
 
-Ktor Boost streamlines HTTP requests in Ktor by offering functions that neatly package results in
-the [Kotlin's Result](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/) class. It makes
+Ktor Boost streamlines HTTP requests in Ktor by offering functions that neatly package results in the [Kotlin's Result](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-result/) class. It makes
 handling successes and errors clearer, simplifying error control in Ktor apps
 
 
