@@ -1,0 +1,19 @@
+[versions]
+agp = "8.0.2"
+kotlin = "1.9.0"
+nexus-publish = "2.0.0-rc-1"
+android-minSdk = "24"
+android-compileSdk = "33"
+ktor-client = "2.3.6"
+ktor-client-mock="2.3.6"
+
+
+[libraries]
+ktor-client = { module = "io.ktor:ktor-client-core", version.ref = "ktor-client" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor-client-mock" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+
+[plugins]
+androidLibrary = { id = "com.android.library", version.ref = "agp" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
