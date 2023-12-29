@@ -24,7 +24,7 @@ public suspend inline fun <reified T> HttpClient.getResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { get(urlString, block).body() } }
+        async { runSafeSuspendCatching { get(urlString, block).body() } }
     }
 
 /**
@@ -39,7 +39,7 @@ public suspend inline fun <reified T> HttpClient.postResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { post(urlString, block).body() } }
+        async { runSafeSuspendCatching { post(urlString, block).body() } }
     }
 
 /**
@@ -54,7 +54,7 @@ public suspend inline fun <reified T> HttpClient.putResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { put(urlString, block).body() } }
+        async { runSafeSuspendCatching { put(urlString, block).body() } }
     }
 
 /**
@@ -69,7 +69,7 @@ public suspend inline fun <reified T> HttpClient.deleteResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { delete(urlString, block).body() } }
+        async { runSafeSuspendCatching { delete(urlString, block).body() } }
     }
 
 /**
@@ -84,7 +84,7 @@ public suspend inline fun <reified T> HttpClient.patchResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { patch(urlString, block).body() } }
+        async { runSafeSuspendCatching { patch(urlString, block).body() } }
     }
 
 /**
@@ -99,7 +99,7 @@ public suspend inline fun <reified T> HttpClient.headResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { head(urlString, block).body() } }
+        async { runSafeSuspendCatching { head(urlString, block).body() } }
     }
 
 /**
@@ -114,5 +114,5 @@ public suspend inline fun <reified T> HttpClient.optionsResultAsync(
     noinline block: HttpRequestBuilder.() -> Unit = {},
 ): Deferred<Result<T>> =
     coroutineScope {
-        async { runCatching { options(urlString, block).body() } }
+        async { runSafeSuspendCatching { options(urlString, block).body() } }
     }

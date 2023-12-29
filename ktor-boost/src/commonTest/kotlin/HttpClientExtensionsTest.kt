@@ -1,7 +1,7 @@
-import io.ktor.client.*
-import io.ktor.client.engine.mock.*
-import io.ktor.client.request.*
-import io.ktor.http.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.mock.MockEngine
+import io.ktor.client.engine.mock.respondOk
+import io.ktor.http.HttpMethod
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -32,6 +32,9 @@ class HttpClientExtensionsTest {
         runBlocking {
             val result = httpClient.getResult<String>("sample_get_url")
 
+            result.onSuccess {
+            }.onFailure {
+            }
             println(result.toString())
 
             assertTrue(result.isSuccess)
@@ -92,7 +95,6 @@ class HttpClientExtensionsTest {
     fun `test headResult extension function`() {
         runBlocking {
             val result = httpClient.headResult<String>("sample_head_url")
-
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)

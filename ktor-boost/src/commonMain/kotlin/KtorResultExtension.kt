@@ -19,7 +19,7 @@ import io.ktor.client.request.put
 suspend inline fun <reified T> HttpClient.getResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { get(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { get(urlString, block).body() }
 
 /**
  * Performs an HTTP POST request synchronously and returns the result as a [Result] of type [T].
@@ -31,7 +31,7 @@ suspend inline fun <reified T> HttpClient.getResult(
 suspend inline fun <reified T> HttpClient.postResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { post(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { post(urlString, block).body() }
 
 /**
  * Performs an HTTP PUT request synchronously and returns the result as a [Result] of type [T].
@@ -43,7 +43,7 @@ suspend inline fun <reified T> HttpClient.postResult(
 suspend inline fun <reified T> HttpClient.putResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { put(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { put(urlString, block).body() }
 
 /**
  * Performs an HTTP DELETE request synchronously and returns the result as a [Result] of type [T].
@@ -55,7 +55,7 @@ suspend inline fun <reified T> HttpClient.putResult(
 suspend inline fun <reified T> HttpClient.deleteResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { delete(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { delete(urlString, block).body() }
 
 /**
  * Performs an HTTP PATCH request synchronously and returns the result as a [Result] of type [T].
@@ -67,7 +67,7 @@ suspend inline fun <reified T> HttpClient.deleteResult(
 suspend inline fun <reified T> HttpClient.patchResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { patch(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { patch(urlString, block).body() }
 
 /**
  * Performs an HTTP HEAD request synchronously and returns the result as a [Result] of type [T].
@@ -79,7 +79,7 @@ suspend inline fun <reified T> HttpClient.patchResult(
 suspend inline fun <reified T> HttpClient.headResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { head(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { head(urlString, block).body() }
 
 /**
  * Performs an HTTP OPTIONS request synchronously and returns the result as a [Result] of type [T].
@@ -91,4 +91,4 @@ suspend inline fun <reified T> HttpClient.headResult(
 suspend inline fun <reified T> HttpClient.optionsResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runCatching { options(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { options(urlString, block).body() }
