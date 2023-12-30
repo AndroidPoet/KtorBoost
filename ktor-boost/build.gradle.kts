@@ -83,7 +83,7 @@ mavenPublishing {
     // or when publishing to https://s01.oss.sonatype.org
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.androidpoet", "ktor-boost", "0.0.9")
+    coordinates("io.github.androidpoet", "ktor-boost", "1.0.0")
 
     pom {
         name.set("ktor-boost")
