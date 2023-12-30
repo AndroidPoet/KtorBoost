@@ -19,7 +19,7 @@ import io.ktor.client.request.put
 suspend inline fun <reified T> HttpClient.getResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Result<T> = runSafeSuspendCatching { get(urlString, block).body() }
+): Result<T> = runSafeSuspendCatching { get(urlString, block).body<T>() }
 
 /**
  * Performs an HTTP POST request synchronously and returns the result as a [Result] of type [T].

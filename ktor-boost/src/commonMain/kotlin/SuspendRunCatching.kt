@@ -1,3 +1,4 @@
+import io.ktor.client.plugins.ResponseException
 import kotlin.coroutines.cancellation.CancellationException
 
 /**
@@ -13,7 +14,9 @@ public suspend inline fun <R> runSafeSuspendCatching(block: () -> R): Result<R> 
         Result.success(block())
     } catch (c: CancellationException) {
         throw c
-    } catch (e: Throwable) {
+    } catch (e: ResponseException) {
         Result.failure(e)
+    } catch (t: Throwable) {
+        Result.failure(t)
     }
 }

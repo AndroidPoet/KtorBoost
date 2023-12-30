@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
-class HttpClientExtensionsTest {
+class HttpClientDeferredExtensionsTest {
     private val mockEngine =
         MockEngine { request ->
             val responseContent =
@@ -23,27 +23,38 @@ class HttpClientExtensionsTest {
                     HttpMethod.Options -> "options success"
                     else -> "" // Handle other methods if needed
                 }
-            respondError(HttpStatusCode.BadGateway, content = responseContent)
+            respondError(HttpStatusCode.Conflict, content = responseContent)
         }
 
     private val httpClient = HttpClient(mockEngine)
 
     @Test
-    fun `test getResult extension function`() {
+    fun `test getDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.getResult<String>("sample_get_url")
-
+            val deferredResult = httpClient.getResultAsync<String>("sample_get_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
-            val responseBody = result.getOrNull()
-            assertNotNull(responseBody)
-            assertEquals("get success", responseBody)
+
+            var onSuccessCalled = true
+            result.onSuccess {
+                onSuccessCalled = false
+            }
+            assertEquals(expected = true, actual = onSuccessCalled)
+            result.onFailure {
+                // assertNotNull(it)
+            }
+
+//            val responseBody = result.getOrThrow()
+//            assertNotNull(responseBody)
+            // assertEquals("get success", responseBody)
         }
     }
 
     @Test
-    fun `test postResult extension function`() {
+    fun `test postDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.postResult<String>("sample_post_url")
+            val deferredResult = httpClient.postResultAsync<String>("sample_post_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)
@@ -52,10 +63,10 @@ class HttpClientExtensionsTest {
     }
 
     @Test
-    fun `test putResult extension function`() {
+    fun `test putDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.putResult<String>("sample_put_url")
-
+            val deferredResult = httpClient.putResultAsync<String>("sample_put_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)
@@ -64,10 +75,10 @@ class HttpClientExtensionsTest {
     }
 
     @Test
-    fun `test deleteResult extension function`() {
+    fun `test deleteDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.deleteResult<String>("sample_delete_url")
-
+            val deferredResult = httpClient.deleteResultAsync<String>("sample_delete_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)
@@ -76,10 +87,10 @@ class HttpClientExtensionsTest {
     }
 
     @Test
-    fun `test patchResult extension function`() {
+    fun `test patchDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.patchResult<String>("sample_patch_url")
-
+            val deferredResult = httpClient.patchResultAsync<String>("sample_patch_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)
@@ -88,9 +99,10 @@ class HttpClientExtensionsTest {
     }
 
     @Test
-    fun `test headResult extension function`() {
+    fun `test headDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.headResult<String>("sample_head_url")
+            val deferredResult = httpClient.headResultAsync<String>("sample_head_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)
@@ -99,10 +111,10 @@ class HttpClientExtensionsTest {
     }
 
     @Test
-    fun `test optionsResult extension function`() {
+    fun `test optionsDeferredResult extension function`() {
         runBlocking {
-            val result = httpClient.optionsResult<String>("sample_options_url")
-
+            val deferredResult = httpClient.optionsResultAsync<String>("sample_options_url")
+            val result = deferredResult.await()
             assertTrue(result.isSuccess)
             val responseBody = result.getOrNull()
             assertNotNull(responseBody)

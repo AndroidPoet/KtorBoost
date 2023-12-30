@@ -53,6 +53,7 @@ kotlin {
         }
         val desktopMain by getting {
             dependencies {
+                implementation(libs.ktor.desktop)
             }
         }
     }

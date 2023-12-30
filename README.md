@@ -29,13 +29,21 @@ handling successes and errors clearer, simplifying error control in Ktor apps
 
 
 <p align="center">
-<img src="https://github.com/AndroidPoet/KtorBoost/assets/13647384/7f99beb3-10a4-4795-a8d0-d70403a2555a"
-"/>
+  <img src="https://github.com/AndroidPoet/KtorBoost/assets/13647384/7f99beb3-10a4-4795-a8d0-d70403a2555a" style="max-width:100%;height:auto;">
 </p>
 
 ## Download
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.androidpoet/ktor-boost.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.androidpoet%22%20AND%20a:%22ktor-boost%22)
+
+### Without this line, you will receive an error response in the 'success' field.
+
+```kotlin
+val client = HttpClient() {
+    expectSuccess = true
+}
+
+```
 
 ### Gradle
 
@@ -54,7 +62,49 @@ sourceSets {
 
 ## Usage
 
-## Before
+```kotlin
+
+// normal get,post,put...methods will be replaced by getResult,postResult,putResult...
+
+val result = httpClient.getResult<String>("sample_get_url")
+
+val result = httpClient.postResult<String>("sample_post_url")
+
+val result = httpClient.putResult<String>("sample_put_url")
+
+val result = httpClient.deleteResult<String>("sample_delete_url")
+
+val result = httpClient.patchResult<String>("sample_patch_url")
+
+val result = httpClient.headResult<String>("sample_head_url")
+
+val result = httpClient.optionsResult<String>("sample_options_url")
+
+
+// for async and await methods use these
+
+val result = httpClient.getResultAsync<String>("sample_get_url")
+
+val result = httpClient.postResultAsync<String>("sample_post_url")
+
+val result = httpClient.putResultAsync<String>("sample_put_url")
+
+val result = httpClient.deleteResultAsync<String>("sample_delete_url")
+
+val result = httpClient.patchResultAsync<String>("sample_patch_url")
+
+val result = httpClient.headResultAsync<String>("sample_head_url")
+
+val result = httpClient.optionsResultAsync<String>("sample_options_url")
+
+
+val deferredResult = httpClient.getResultAsync<String>("sample_get_url")
+val result = deferredResult.await()
+
+
+```
+
+## Without KtorBoost
 
 Initially, when fetching data from APIs, the code directly gets the response's content, leading to
 repetitive use of the 'body()' method:
@@ -63,6 +113,13 @@ repetitive use of the 'body()' method:
 // api service claas function 
 suspend fun getUserNames(): List<String> {
     return httpClient.get("trendingMovies").body()
+}
+
+
+//for async oprations
+
+suspend fun getAsyncUserNames(): Deferred<List<String>> {
+    return coroutineScope { async { httpClient.get("trendingMovies").body<String>() } }
 }
 
 
@@ -84,23 +141,34 @@ viewModelScope.launch {
     }
 }
 
+// Async Await
+
+viewModelScope.launch {
+    try {
+        val deferredData = apiService.getAsyncUserNames()
+        deferredResult.await()
+        // handle data
+    } catch (e: Throwable) {
+        // handle error 
+    }
+}
+
 
 ```
 
-## After
+## With KtorBoost
 
 With improvements, the API calls are now focused solely on returning values:
 
 ```kotlin
 // api service claas function 
-
-suspend fun getUserNamesResult(): Result<List<String>> {
-    return httpClient.getResult<List<String>>("trendingMovies")
-}
-
-//or
-
 suspend fun getUserNamesResult() = httpClient.getResult<List<String>>("trendingMovies")
+
+
+//for async oprations
+
+suspend fun getAsyncUserNames(): = httpClient.getResultAsync<List<String>>("trendingMovies")
+
 
 ```
 
@@ -118,6 +186,21 @@ viewModelScope.launch {
     }
 }
 
+
+// Async Await
+
+viewModelScope.launch {
+    val deferredResult = apiService.getAsyncUserNames()
+    val result = deferredResult.await()
+
+    result.onSuccess { data ->
+        // handle data
+    }.onFailure { error ->
+        // handle error 
+    }
+
+}
+
 ```
 
 ## Different variations and use cases
@@ -125,10 +208,11 @@ viewModelScope.launch {
 The solution offers multiple variations in response handling, enabling adaptability based on team
 preferences and project needs:
 
-If you prefer executing the response function as a suspend function, useful for nested suspend
-function usage on success or error:
-
 ```kotlin
+
+//If you prefer executing the response function as a suspend function, useful for nested suspend
+//function usage on success or error:
+
 viewModelScope.launch {
     result.onSuccessSuspend { data ->
         // handle data
@@ -139,9 +223,9 @@ viewModelScope.launch {
 
 ```
 
-### For cases solely interested in success response, using getOrNull() function and handling errors manually:
-
 ```kotlin
+// For cases solely interested in success response, using getOrNull() function and handling errors manually:
+
 viewModelScope.launch {
     if (result.isSuccess) {
         val data = result.getOrNull()
@@ -153,9 +237,11 @@ viewModelScope.launch {
 
 ```
 
-### Folding the response, a concise approach for clean and readable code:
-
 ```kotlin
+
+
+// Folding the response, a concise approach for clean and readable code:
+
 viewModelScope.launch {
     result.fold(onSuccess = { data ->
         // handle data
@@ -166,9 +252,11 @@ viewModelScope.launch {
 
 ```
 
-### Fold also supports suspend version:
-
 ```kotlin
+
+
+// Fold also supports suspend version:
+
 viewModelScope.launch {
     result.foldSuspend(
         onSuccess = { data ->
@@ -193,18 +281,13 @@ Also, __[follow me](https://github.com/androidpoet)__ on GitHub for my next crea
 
 
 # License
+
 ```xml
 Copyright 2023 AndroidPoet (Ranbir Singh)
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    Licensed under the Apache License, Version 2.0 (the "License");you may not use this file except in compliance with the License.You may obtain a copy of the License at
 
-http://www.apache.org/licenses/LICENSE-2.0
+    http://www.apache.org/licenses/LICENSE-2.0
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+    Unless required by applicable law or agreed to in writing, softwaredistributed under the License is distributed on an "AS IS" BASIS,WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.See the License for the specific language governing permissions andlimitations under the License.
 ```
