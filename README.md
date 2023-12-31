@@ -12,6 +12,7 @@
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
   <a href="https://github.com/androidpoet/KtorBoost/actions/workflows/build.yml"><img alt="Build Status" 
   src="https://github.com/androidpoet/KtorBoost/actions/workflows/build.yml/badge.svg"/></a>
+<a href="https://androidweekly.net/issues/issue-509"><img alt="Android Weekly" src="https://androidweekly.net/issues/issue-603/badge"/></a>	
  <a href="https://github.com/androidpoet"><img alt="Profile" src="https://user-images.githubusercontent.com/13647384/162662962-82e3c1eb-baf8-4e21-ad26-d4c4e3c31e44.svg"/></a>
 </p><br>
 
