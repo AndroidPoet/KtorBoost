@@ -37,7 +37,9 @@ handling successes and errors clearer, simplifying error control in Ktor apps
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.androidpoet/ktor-boost.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.androidpoet%22%20AND%20a:%22ktor-boost%22)
 
-### Optional: fail `Result` on non-2xx responses
+### Choose how you want to handle HTTP errors
+
+KtorBoost keeps the original `Result<T>` helpers for simple calls:
 
 ```kotlin
 val client = HttpClient() {
@@ -46,8 +48,11 @@ val client = HttpClient() {
 
 ```
 
-If you want status codes and error bodies without relying on exceptions, use `NetworkResult`
-instead.
+With `expectSuccess = true`, Ktor throws on non-2xx responses and KtorBoost returns
+`Result.failure(...)`.
+
+For apps that need status codes, headers, raw error bodies, or decoded API errors, use the
+optional `NetworkResult` API instead. `NetworkResult` works with or without `expectSuccess`.
 
 ### Gradle
 
@@ -68,7 +73,7 @@ sourceSets {
 
 ```kotlin
 
-// normal get,post,put...methods will be replaced by getResult,postResult,putResult...
+// Simple Result<T> helpers.
 
 val result = httpClient.getResult<String>("sample_get_url")
 
@@ -83,8 +88,13 @@ val result = httpClient.patchResult<String>("sample_patch_url")
 val result = httpClient.headResult<String>("sample_head_url")
 
 val result = httpClient.optionsResult<String>("sample_options_url")
+```
 
-// for full response metadata and typed HTTP errors
+### Typed HTTP errors
+
+Use `NetworkResult` when the UI or repository needs more than success/failure:
+
+```kotlin
 
 val networkResult = httpClient.getNetworkResult<User, ApiError>(
     urlString = "sample_user_url",
@@ -111,9 +121,26 @@ when (networkResult) {
         val cause = networkResult.cause
     }
 }
+```
 
+`NetworkResult` gives you:
 
-// for async and await methods use these
+- `Success`: response body, status code, and headers.
+- `HttpError`: status code, headers, raw error body, optional decoded error body, and decode failure.
+- `ResponseDecodingError`: successful HTTP response whose body could not be decoded.
+- `RequestError`: network, timeout, or other request failures.
+
+### Empty responses
+
+For `204 No Content`, `HEAD`, or delete calls that return no body, request `Unit`:
+
+```kotlin
+val result = httpClient.deleteResult<Unit>("sample_delete_url")
+```
+
+### Async and await
+
+```kotlin
 
 val result = httpClient.getResultAsync<String>("sample_get_url")
 
@@ -135,6 +162,22 @@ val result = deferredResult.await()
 
 
 ```
+
+Async helpers return a live `Deferred<Result<T>>` that follows structured coroutine
+cancellation.
+
+## Compatibility
+
+Existing `getResult`, `postResult`, `putResult`, `deleteResult`, `patchResult`, `headResult`,
+`optionsResult`, and async helpers are still available.
+
+Recommended release version for this API is `1.1.0` because it adds new functionality and fixes
+coroutine cancellation behavior:
+
+- `runCatchingSuspend` rethrows `CancellationException` instead of wrapping cancellation in
+  `Result.failure(...)`.
+- Async helpers now return a real pending `Deferred` instead of waiting inside their own
+  `coroutineScope`.
 
 ## Without KtorBoost
 
