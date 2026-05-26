@@ -66,8 +66,10 @@ val httpClient = HttpClient {
 | --- | --- |
 | Simple success/failure handling | `getResult<T>()` |
 | Need status code, headers, or error body | `getNetworkResult<T, E>()` |
+| Retry transient failures | `getResultWithRetry<T>()` |
 | Empty response body, such as `204 No Content` | `deleteResult<Unit>()` |
 | Need a `Deferred<Result<T>>` | `getResultAsync<T>()` |
+| Add common headers, query params, or body | `bearerToken`, `queryParams`, `jsonBody`, `formBody` |
 | Need suspend callbacks on `Result` | `onSuccessSuspend`, `onFailureSuspend`, `foldSuspend` |
 
 ## Typed HTTP Errors
@@ -106,6 +108,56 @@ when (result) {
 ```
 
 `NetworkResult` works with or without Ktor's `expectSuccess` setting.
+
+You can also use convenience helpers:
+
+```kotlin
+val user = result.getOrNull()
+val apiError = result.errorOrNull()
+val statusCode = result.statusCodeOrNull()
+
+val displayName =
+    result
+        .map { user -> user.name }
+        .getOrNull()
+```
+
+## Retry And Timeout
+
+Use retry helpers for transient failures such as `408`, `429`, `500`, `502`, `503`, and `504`.
+
+```kotlin
+val result = httpClient.getResultWithRetry<User>(
+    urlString = "users/me",
+    retryPolicy = RetryPolicy(maxRetries = 3),
+    timeout = 5.seconds,
+)
+```
+
+For typed errors:
+
+```kotlin
+val result = httpClient.getNetworkResultWithRetry<User, ApiError>(
+    urlString = "users/me",
+    retryPolicy = RetryPolicy(maxRetries = 3),
+    timeout = 5.seconds,
+    decodeErrorBody = { rawBody ->
+        json.decodeFromString<ApiError>(rawBody)
+    },
+)
+```
+
+## Request Builder Shortcuts
+
+Use small request builder helpers to keep call sites readable.
+
+```kotlin
+val result = httpClient.postResult<User>("users") {
+    bearerToken(token)
+    queryParams(mapOf("source" to "android"))
+    jsonBody(CreateUserRequest(name = "Ranbir"))
+}
+```
 
 ## Empty Responses
 
