@@ -67,6 +67,7 @@ val httpClient = HttpClient {
 | Simple success/failure handling | `getResult<T>()` |
 | Need status code, headers, or error body | `getNetworkResult<T, E>()` |
 | Retry transient failures | `getResultWithRetry<T>()` |
+| Download bytes with progress | `downloadBytes()` |
 | Empty response body, such as `204 No Content` | `deleteResult<Unit>()` |
 | Need a `Deferred<Result<T>>` | `getResultAsync<T>()` |
 | Add common headers, query params, or body | `bearerToken`, `queryParams`, `jsonBody`, `formBody` |
@@ -145,6 +146,39 @@ val result = httpClient.getNetworkResultWithRetry<User, ApiError>(
         json.decodeFromString<ApiError>(rawBody)
     },
 )
+```
+
+## Downloads
+
+Use `downloadBytes` for KMP-safe downloads with progress. The core API returns bytes and
+metadata; apps can decide where to store the bytes on each platform.
+
+```kotlin
+val result = httpClient.downloadBytes(
+    urlString = "files/report.pdf",
+    onProgress = { progress ->
+        val fraction = progress.fraction
+        val bytesRead = progress.bytesRead
+        val totalBytes = progress.totalBytes
+    },
+)
+
+when (result) {
+    is DownloadResult.Success -> {
+        val bytes = result.content.bytes
+        val contentType = result.content.contentType
+        val contentLength = result.content.contentLength
+    }
+
+    is DownloadResult.HttpError -> {
+        val statusCode = result.statusCode
+        val rawErrorBody = result.rawBody
+    }
+
+    is DownloadResult.RequestError -> {
+        val cause = result.cause
+    }
+}
 ```
 
 ## Request Builder Shortcuts
