@@ -34,6 +34,17 @@ sourceSets {
 }
 ```
 
+## Features
+
+- Simple `Result<T>` wrappers for Ktor HTTP calls.
+- Typed `NetworkResult<T, E>` for status codes, headers, raw error bodies, and decoded API errors.
+- Retry and timeout helpers for transient network failures.
+- KMP-safe byte downloads with progress callbacks.
+- Empty response support with `Unit`.
+- Async helpers returning `Deferred<Result<T>>`.
+- Request builder shortcuts for bearer auth, query params, JSON bodies, and form bodies.
+- Suspend-friendly `Result` helpers.
+
 ## Quick Start
 
 Use `getResult`, `postResult`, `putResult`, `deleteResult`, `patchResult`, `headResult`, or
@@ -181,6 +192,20 @@ when (result) {
 }
 ```
 
+`DownloadResult.Success` includes:
+
+- `bytes`: downloaded `ByteArray`.
+- `statusCode`: HTTP status code.
+- `headers`: response headers.
+- `contentLength`: value from `Content-Length`, when available.
+- `contentType`: parsed response content type, when available.
+
+`DownloadProgress` includes:
+
+- `bytesRead`: bytes received so far.
+- `totalBytes`: total size when the server sends `Content-Length`.
+- `fraction`: progress from `0.0` to `1.0` when total size is known.
+
 ## Request Builder Shortcuts
 
 Use small request builder helpers to keep call sites readable.
@@ -253,7 +278,8 @@ Existing simple helpers are still available:
 
 Recommended release version: `1.1.0`.
 
-This release adds `NetworkResult` and fixes coroutine behavior:
+This release adds `NetworkResult`, retry helpers, request builder shortcuts, downloads, and fixes
+coroutine behavior:
 
 - `runCatchingSuspend` now rethrows `CancellationException`.
 - Async helpers now return a real pending `Deferred<Result<T>>`.
