@@ -44,4 +44,18 @@ class RunCatchingTest {
             }
         }
     }
+
+    @Test
+    fun test_runCatchingSuspend_cancellation_rethrowsCancellationException() {
+        runBlocking {
+            try {
+                runCatchingSuspend {
+                    throw CancellationException("Simulated cancellation")
+                }
+                fail("Expected CancellationException, but no exception was thrown.")
+            } catch (exception: CancellationException) {
+                assertEquals("Simulated cancellation", exception.message)
+            }
+        }
+    }
 }

@@ -9,7 +9,7 @@ import kotlin.coroutines.cancellation.CancellationException
  * @return a [Result] indicating success ([Result.success]) or failure ([Result.failure]) of the function
  * @throws CancellationException if the coroutine is cancelled during the execution of [block]
  */
-public suspend inline fun <R> runSafeSuspendCatching(block: () -> R): Result<R> {
+public suspend inline fun <R> runSafeSuspendCatching(block: suspend () -> R): Result<R> {
     return try {
         Result.success(block())
     } catch (c: CancellationException) {

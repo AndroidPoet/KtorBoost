@@ -1,16 +1,9 @@
 import io.ktor.client.HttpClient
-import io.ktor.client.call.body
 import io.ktor.client.request.HttpRequestBuilder
-import io.ktor.client.request.delete
-import io.ktor.client.request.get
-import io.ktor.client.request.head
-import io.ktor.client.request.options
-import io.ktor.client.request.patch
-import io.ktor.client.request.post
-import io.ktor.client.request.put
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.async
-import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
 
 /**
  * Executes an asynchronous HTTP GET request using the provided URL.
@@ -22,10 +15,7 @@ import kotlinx.coroutines.coroutineScope
 public suspend inline fun <reified T> HttpClient.getResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { get(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { getResult(urlString, block) }
 
 /**
  * Executes an asynchronous HTTP POST request using the provided URL.
@@ -37,10 +27,7 @@ public suspend inline fun <reified T> HttpClient.getResultAsync(
 public suspend inline fun <reified T> HttpClient.postResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { post(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { postResult(urlString, block) }
 
 /**
  * Executes an asynchronous HTTP PUT request using the provided URL.
@@ -52,10 +39,7 @@ public suspend inline fun <reified T> HttpClient.postResultAsync(
 public suspend inline fun <reified T> HttpClient.putResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { put(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { putResult(urlString, block) }
 
 /**
  * Executes an asynchronous HTTP DELETE request using the provided URL.
@@ -67,10 +51,7 @@ public suspend inline fun <reified T> HttpClient.putResultAsync(
 public suspend inline fun <reified T> HttpClient.deleteResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { delete(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { deleteResult(urlString, block) }
 
 /**
  * Executes an asynchronous HTTP PATCH request using the provided URL.
@@ -82,10 +63,7 @@ public suspend inline fun <reified T> HttpClient.deleteResultAsync(
 public suspend inline fun <reified T> HttpClient.patchResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { patch(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { patchResult(urlString, block) }
 
 /**
  * Executes an asynchronous HTTP HEAD request using the provided URL.
@@ -97,10 +75,7 @@ public suspend inline fun <reified T> HttpClient.patchResultAsync(
 public suspend inline fun <reified T> HttpClient.headResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { head(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { headResult(urlString, block) }
 
 /**
  * Executes an asynchronous HTTP OPTIONS request using the provided URL.
@@ -112,7 +87,4 @@ public suspend inline fun <reified T> HttpClient.headResultAsync(
 public suspend inline fun <reified T> HttpClient.optionsResultAsync(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
-): Deferred<Result<T>> =
-    coroutineScope {
-        async { runSafeSuspendCatching { options(urlString, block).body() } }
-    }
+): Deferred<Result<T>> = CoroutineScope(currentCoroutineContext()).async { optionsResult(urlString, block) }

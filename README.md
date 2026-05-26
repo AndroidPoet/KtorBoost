@@ -37,7 +37,7 @@ handling successes and errors clearer, simplifying error control in Ktor apps
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.androidpoet/ktor-boost.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.androidpoet%22%20AND%20a:%22ktor-boost%22)
 
-### Without this line, you will receive an error response in the 'success' field.
+### Optional: fail `Result` on non-2xx responses
 
 ```kotlin
 val client = HttpClient() {
@@ -45,6 +45,9 @@ val client = HttpClient() {
 }
 
 ```
+
+If you want status codes and error bodies without relying on exceptions, use `NetworkResult`
+instead.
 
 ### Gradle
 
@@ -80,6 +83,34 @@ val result = httpClient.patchResult<String>("sample_patch_url")
 val result = httpClient.headResult<String>("sample_head_url")
 
 val result = httpClient.optionsResult<String>("sample_options_url")
+
+// for full response metadata and typed HTTP errors
+
+val networkResult = httpClient.getNetworkResult<User, ApiError>(
+    urlString = "sample_user_url",
+    decodeErrorBody = { rawBody ->
+        json.decodeFromString<ApiError>(rawBody)
+    },
+)
+
+when (networkResult) {
+    is NetworkResult.Success -> {
+        val user = networkResult.body
+        val statusCode = networkResult.statusCode
+        val headers = networkResult.headers
+    }
+    is NetworkResult.HttpError -> {
+        val statusCode = networkResult.statusCode
+        val rawError = networkResult.rawBody
+        val apiError = networkResult.errorBody
+    }
+    is NetworkResult.ResponseDecodingError -> {
+        val cause = networkResult.cause
+    }
+    is NetworkResult.RequestError -> {
+        val cause = networkResult.cause
+    }
+}
 
 
 // for async and await methods use these

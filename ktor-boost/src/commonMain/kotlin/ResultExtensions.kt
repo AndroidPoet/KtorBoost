@@ -1,6 +1,7 @@
 import kotlin.contracts.ExperimentalContracts
 import kotlin.contracts.InvocationKind
 import kotlin.contracts.contract
+import kotlin.coroutines.cancellation.CancellationException
 
 // https://github.com/skydoves/retrofit-adapters/blob/main/retrofit-adapters-result/src/main/kotlin/com/skydoves/retrofit/adapters/result/ResultExtensions.kt
 
@@ -13,6 +14,8 @@ import kotlin.contracts.contract
 public suspend inline fun <R> runCatchingSuspend(crossinline block: suspend () -> R): Result<R> {
     return try {
         Result.success(block())
+    } catch (c: CancellationException) {
+        throw c
     } catch (e: Throwable) {
         Result.failure(e)
     }
@@ -27,6 +30,8 @@ public suspend inline fun <R> runCatchingSuspend(crossinline block: suspend () -
 public suspend inline fun <T, R> T.runCatchingSuspend(crossinline block: suspend T.() -> R): Result<R> {
     return try {
         Result.success(block())
+    } catch (c: CancellationException) {
+        throw c
     } catch (e: Throwable) {
         Result.failure(e)
     }

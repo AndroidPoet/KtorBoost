@@ -1,8 +1,10 @@
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.mock.MockEngine
-import io.ktor.client.engine.mock.respondError
+import io.ktor.client.engine.mock.respond
+import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpMethod
 import io.ktor.http.HttpStatusCode
+import io.ktor.http.headersOf
 import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -23,7 +25,11 @@ class HttpClientExtensionsTest {
                     HttpMethod.Options -> "options success"
                     else -> "" // Handle other methods if needed
                 }
-            respondError(HttpStatusCode.BadGateway, content = responseContent)
+            respond(
+                content = responseContent,
+                status = HttpStatusCode.OK,
+                headers = headersOf(HttpHeaders.ContentType, "text/plain"),
+            )
         }
 
     private val httpClient = HttpClient(mockEngine)
