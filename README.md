@@ -38,6 +38,7 @@ sourceSets {
 
 - Simple `Result<T>` wrappers for Ktor HTTP calls.
 - Typed `NetworkResult<T, E>` for status codes, headers, raw error bodies, and decoded API errors.
+- Bearer token helpers with automatic refresh and request replay on `401`.
 - Retry and timeout helpers for transient network failures.
 - KMP-safe byte downloads with progress callbacks.
 - Empty response support with `Unit`.
@@ -77,6 +78,7 @@ val httpClient = HttpClient {
 | --- | --- |
 | Simple success/failure handling | `getResult<T>()` |
 | Need status code, headers, or error body | `getNetworkResult<T, E>()` |
+| Authenticated request with token refresh | `getAuthenticatedNetworkResult<T, E>()` |
 | Retry transient failures | `getResultWithRetry<T>()` |
 | Download bytes with progress | `downloadBytes()` |
 | Empty response body, such as `204 No Content` | `deleteResult<Unit>()` |
@@ -133,6 +135,62 @@ val displayName =
         .map { user -> user.name }
         .getOrNull()
 ```
+
+## Auth Token Refresh
+
+Use `BearerTokenProvider` when authenticated APIs need automatic token refresh. Your app owns
+token storage; KtorBoost asks for the current token, refreshes when needed, and replays the
+request after a `401`.
+
+```kotlin
+class AppTokenProvider(
+    private val tokenStore: TokenStore,
+    private val authApi: AuthApi,
+) : BearerTokenProvider {
+    override suspend fun currentToken(): String? {
+        return tokenStore.accessToken
+    }
+
+    override suspend fun refreshToken(): String? {
+        val token = authApi.refreshAccessToken(tokenStore.refreshToken)
+        tokenStore.accessToken = token
+        return token
+    }
+
+    override suspend fun clearToken() {
+        tokenStore.clear()
+    }
+}
+```
+
+Then call authenticated helpers:
+
+```kotlin
+val result = httpClient.getAuthenticatedNetworkResult<User, ApiError>(
+    urlString = "users/me",
+    tokenProvider = appTokenProvider,
+    decodeErrorBody = { rawBody ->
+        json.decodeFromString<ApiError>(rawBody)
+    },
+)
+```
+
+For simple `Result<T>`:
+
+```kotlin
+val result = httpClient.getAuthenticatedResult<User>(
+    urlString = "users/me",
+    tokenProvider = appTokenProvider,
+)
+```
+
+Behavior:
+
+- If `currentToken()` returns a token, KtorBoost sends `Authorization: Bearer <token>`.
+- If `currentToken()` returns `null`, KtorBoost calls `refreshToken()` before the first request.
+- If the server returns `401`, KtorBoost calls `refreshToken()` and replays the request once.
+- If the replay still returns `401`, KtorBoost calls `clearToken()` and returns the error.
+- KtorBoost does not cache tokens internally; your `BearerTokenProvider` remains the source of truth.
 
 ## Retry And Timeout
 
@@ -278,8 +336,8 @@ Existing simple helpers are still available:
 
 Recommended release version: `1.1.0`.
 
-This release adds `NetworkResult`, retry helpers, request builder shortcuts, downloads, and fixes
-coroutine behavior:
+This release adds `NetworkResult`, auth refresh helpers, retry helpers, request builder shortcuts,
+downloads, and fixes coroutine behavior:
 
 - `runCatchingSuspend` now rethrows `CancellationException`.
 - Async helpers now return a real pending `Deferred<Result<T>>`.
