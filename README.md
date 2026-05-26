@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/AndroidPoet/KtorBoost/assets/13647384/7f99beb3-10a4-4795-a8d0-d70403a2555a" style="max-width:100%;height:auto;">
+  <img src="docs/assets/readme-hero.png" alt="From try/catch to Result" style="max-width:100%;height:auto;">
 </p>
 
 ## Install
