@@ -32,7 +32,7 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeMqttOv
         urlString = endpoint.url,
         json = endpoint.json,
         onText = { raw, _ ->
-            onEvent(endpoint.json.decodeFromString<Incoming>(raw))
+            onEvent(decodeMqttIncoming(raw, endpoint.json))
         },
         session = session,
     ).let { result ->
@@ -43,3 +43,9 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeMqttOv
         }
     }
 }
+
+@PublishedApi
+internal inline fun <reified Incoming> decodeMqttIncoming(
+    raw: String,
+    json: kotlinx.serialization.json.Json,
+): Incoming = json.decodeFromString(raw)

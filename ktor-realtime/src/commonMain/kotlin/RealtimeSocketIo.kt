@@ -2,6 +2,7 @@ import io.ktor.client.HttpClient
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.decodeFromJsonElement
 import kotlinx.serialization.json.JsonArray
+import kotlinx.serialization.json.JsonElement
 import kotlinx.serialization.json.JsonPrimitive
 
 public suspend inline fun <reified Incoming> HttpClient.realtimeSocketIo(
@@ -35,24 +36,47 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeSocket
         urlString = endpoint.url,
         json = endpoint.json,
         onText = { raw, realtimeSession ->
-            when {
-                raw.startsWith("0") -> {
-                    val namespace = endpoint.namespace.takeIf { it != "/" } ?: ""
-                    realtimeSession.sendText("40$namespace")
-                }
-                raw.startsWith("40") -> Unit
-                raw.startsWith("2") -> realtimeSession.sendText("3")
-                raw.startsWith("42") -> {
-                    val payload = raw.removePrefix("42")
-                    val eventArray = endpoint.json.decodeFromString<JsonArray>(payload)
-                    if (eventArray.size < 2) return@realtimeTextResult
-                    val eventName = (eventArray[0] as? JsonPrimitive)?.content
-                    if (endpoint.eventName != null && endpoint.eventName != eventName) return@realtimeTextResult
-                    val data = eventArray[1]
-                    onEvent(endpoint.json.decodeFromJsonElement<Incoming>(data))
-                }
+            val action = handleSocketIoFrame(raw, endpoint, endpoint.json)
+            when (action) {
+                is SocketIoFrameAction.SendText -> realtimeSession.sendText(action.text)
+                is SocketIoFrameAction.EmitEvent -> onEvent(endpoint.json.decodeFromJsonElement(action.payload))
+                SocketIoFrameAction.Ignore -> Unit
             }
         },
         session = session,
     )
+}
+
+@PublishedApi
+internal sealed class SocketIoFrameAction {
+    data object Ignore : SocketIoFrameAction()
+    data class SendText(val text: String) : SocketIoFrameAction()
+    data class EmitEvent(val payload: JsonElement) : SocketIoFrameAction()
+}
+
+@PublishedApi
+internal fun handleSocketIoFrame(
+    raw: String,
+    endpoint: RealtimeEndpoint.SocketIo,
+    json: kotlinx.serialization.json.Json,
+): SocketIoFrameAction {
+    return when {
+        raw.startsWith("0") -> {
+            val namespace = endpoint.namespace.takeIf { it != "/" } ?: ""
+            SocketIoFrameAction.SendText("40$namespace")
+        }
+        raw.startsWith("2") -> SocketIoFrameAction.SendText("3")
+        raw.startsWith("42") -> {
+            val payload = raw.removePrefix("42")
+            val eventArray = json.decodeFromString<JsonArray>(payload)
+            if (eventArray.size < 2) return SocketIoFrameAction.Ignore
+            val eventName = (eventArray[0] as? JsonPrimitive)?.content
+            if (endpoint.eventName != null && endpoint.eventName != eventName) {
+                SocketIoFrameAction.Ignore
+            } else {
+                SocketIoFrameAction.EmitEvent(eventArray[1])
+            }
+        }
+        else -> SocketIoFrameAction.Ignore
+    }
 }

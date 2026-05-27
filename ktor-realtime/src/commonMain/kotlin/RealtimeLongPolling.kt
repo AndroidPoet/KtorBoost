@@ -38,7 +38,7 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeLongPo
                     method = endpoint.method
                 }
             val payload = response.body<String>()
-            onEvent(endpoint.json.decodeFromString<Incoming>(payload))
+            onEvent(decodeLongPollingIncoming(payload, endpoint.json))
             delay(endpoint.intervalMillis)
         }
         @Suppress("UNREACHABLE_CODE")
@@ -47,3 +47,9 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeLongPo
         realtimeFailure(RealtimeProtocol.LongPolling, cause)
     }
 }
+
+@PublishedApi
+internal inline fun <reified Incoming> decodeLongPollingIncoming(
+    payload: String,
+    json: kotlinx.serialization.json.Json,
+): Incoming = json.decodeFromString(payload)

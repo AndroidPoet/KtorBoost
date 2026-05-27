@@ -32,7 +32,7 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeRSocke
         urlString = endpoint.url,
         json = endpoint.json,
         onText = { raw, _ ->
-            onEvent(endpoint.json.decodeFromString<Incoming>(raw))
+            onEvent(decodeRSocketIncoming(raw, endpoint.json))
         },
         session = session,
     ).let { result ->
@@ -43,3 +43,9 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeRSocke
         }
     }
 }
+
+@PublishedApi
+internal inline fun <reified Incoming> decodeRSocketIncoming(
+    raw: String,
+    json: kotlinx.serialization.json.Json,
+): Incoming = json.decodeFromString(raw)

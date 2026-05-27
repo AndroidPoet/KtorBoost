@@ -13,6 +13,38 @@ public data class RealtimeServerSentEvent(
     val retryMillis: Long?,
 )
 
+@PublishedApi
+internal fun parseSseEventBlock(lines: List<String>): RealtimeServerSentEvent? {
+    var id: String? = null
+    var event: String? = null
+    var retry: Long? = null
+    val data = mutableListOf<String>()
+
+    for (line in lines) {
+        if (line.isEmpty() || line.startsWith(":")) continue
+        val separatorIndex = line.indexOf(':')
+        val field = if (separatorIndex == -1) line else line.substring(0, separatorIndex)
+        val rawValue = if (separatorIndex == -1) "" else line.substring(separatorIndex + 1).trimStart()
+        when (field) {
+            "id" -> id = rawValue
+            "event" -> event = rawValue
+            "data" -> data += rawValue
+            "retry" -> retry = rawValue.toLongOrNull()
+        }
+    }
+
+    return if (data.isEmpty()) {
+        null
+    } else {
+        RealtimeServerSentEvent(
+            id = id,
+            event = event,
+            data = data.joinToString("\n"),
+            retryMillis = retry,
+        )
+    }
+}
+
 public suspend inline fun <reified T> HttpClient.realtimeSseJson(
     endpoint: RealtimeEndpoint.ServerSentEvents,
     crossinline onEvent: suspend (T) -> Unit,
@@ -43,42 +75,16 @@ public suspend fun HttpClient.realtimeSse(
         endpoint.lastEventId?.let { header("Last-Event-ID", it) }
     }.execute { response ->
         val channel = response.body<io.ktor.utils.io.ByteReadChannel>()
-        var id: String? = null
-        var event: String? = null
-        var retry: Long? = null
-        val data = mutableListOf<String>()
+        val blockLines = mutableListOf<String>()
 
         while (!channel.isClosedForRead) {
             val line = channel.readUTF8Line() ?: break
             if (line.isEmpty()) {
-                if (data.isNotEmpty()) {
-                    onEvent(
-                        RealtimeServerSentEvent(
-                            id = id,
-                            event = event,
-                            data = data.joinToString("\n"),
-                            retryMillis = retry,
-                        ),
-                    )
-                }
-                id = null
-                event = null
-                retry = null
-                data.clear()
+                parseSseEventBlock(blockLines)?.let { onEvent(it) }
+                blockLines.clear()
                 continue
             }
-            if (line.startsWith(":")) continue
-
-            val separatorIndex = line.indexOf(':')
-            val field = if (separatorIndex == -1) line else line.substring(0, separatorIndex)
-            val rawValue = if (separatorIndex == -1) "" else line.substring(separatorIndex + 1).trimStart()
-
-            when (field) {
-                "id" -> id = rawValue
-                "event" -> event = rawValue
-                "data" -> data += rawValue
-                "retry" -> retry = rawValue.toLongOrNull()
-            }
+            blockLines += line
         }
     }
 }
