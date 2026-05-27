@@ -31,14 +31,14 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
         run: |
           ./gradlew -DLibrariesOnly=true \
-            :ktor-boost:publishAndReleaseToMavenCentral \
-            :ktor-realtime:publishAndReleaseToMavenCentral \
-            :ktor-realtime-websocket:publishAndReleaseToMavenCentral \
-            :ktor-realtime-sse:publishAndReleaseToMavenCentral \
-            :ktor-realtime-reverb:publishAndReleaseToMavenCentral \
-            :ktor-realtime-socketio:publishAndReleaseToMavenCentral \
-            :ktor-realtime-stomp:publishAndReleaseToMavenCentral \
-            :ktor-realtime-graphql:publishAndReleaseToMavenCentral \
-            :ktor-realtime-mqtt:publishAndReleaseToMavenCentral \
-            :ktor-realtime-rsocket:publishAndReleaseToMavenCentral \
-            :ktor-realtime-longpolling:publishAndReleaseToMavenCentral
+            :ktor-boost:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-websocket:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-sse:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-reverb:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-socketio:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-stomp:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-graphql:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-mqtt:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-rsocket:publishAllPublicationsToMavenCentralRepository \
+            :ktor-realtime-longpolling:publishAllPublicationsToMavenCentralRepository
