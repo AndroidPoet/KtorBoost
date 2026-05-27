@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/readme-benefits-hero.svg" alt="KtorBoost benefits overview" style="max-width:100%;height:auto;">
+  <img src="docs/assets/readme-hero.png" alt="From try/catch to expressive success and error flows" style="max-width:100%;height:auto;">
 </p>
 
 ## Install
