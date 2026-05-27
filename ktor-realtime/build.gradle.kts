@@ -1,4 +1,5 @@
 import org.gradle.api.tasks.testing.Test
+import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     kotlin("multiplatform")
@@ -118,4 +119,8 @@ mavenPublishing {
             developerConnection.set("scm:git:ssh://github.com/AndroidPoet/KtorBoost.git")
         }
     }
+}
+
+tasks.withType<DokkaTask>().configureEach {
+    dependsOn(":ktor-boost:transformIosMainCInteropDependenciesMetadataForIde")
 }

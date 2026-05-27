@@ -90,3 +90,8 @@ mavenPublishing {
         }
     }
 }
+
+tasks.withType<org.jetbrains.dokka.gradle.DokkaTask>().configureEach {
+    dependsOn(":ktor-realtime:transformIosMainCInteropDependenciesMetadataForIde")
+    dependsOn(":ktor-boost:transformIosMainCInteropDependenciesMetadataForIde")
+}
