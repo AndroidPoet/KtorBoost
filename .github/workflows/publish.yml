@@ -30,15 +30,19 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
         run: |
-          ./gradlew -DLibrariesOnly=true \
-            :ktor-boost:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-websocket:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-sse:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-reverb:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-socketio:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-stomp:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-graphql:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-mqtt:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-rsocket:publishAllPublicationsToMavenCentralRepository \
-            :ktor-realtime-longpolling:publishAllPublicationsToMavenCentralRepository
+          modules=(
+            ktor-boost
+            ktor-realtime
+            ktor-realtime-websocket
+            ktor-realtime-sse
+            ktor-realtime-reverb
+            ktor-realtime-socketio
+            ktor-realtime-stomp
+            ktor-realtime-graphql
+            ktor-realtime-mqtt
+            ktor-realtime-rsocket
+            ktor-realtime-longpolling
+          )
+          for module in "${modules[@]}"; do
+            ./gradlew -DLibrariesOnly=true ":${module}:publishAllPublicationsToMavenCentralRepository"
+          done
