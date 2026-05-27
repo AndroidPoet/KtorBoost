@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <img src="docs/assets/readme-hero.png" alt="From try/catch to Result" style="max-width:100%;height:auto;">
+  <img src="docs/assets/readme-benefits-hero.svg" alt="KtorBoost benefits overview" style="max-width:100%;height:auto;">
 </p>
 
 ## Install
@@ -89,6 +89,7 @@ val httpClient = HttpClient {
 ## Typed HTTP Errors
 
 Use `NetworkResult` when your app needs response metadata or typed API errors.
+Detailed operator docs: [docs/network-result-operators.md](docs/network-result-operators.md).
 
 ```kotlin
 val result = httpClient.getNetworkResult<User, ApiError>(

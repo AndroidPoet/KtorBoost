@@ -1,0 +1,54 @@
+<svg width="1600" height="760" viewBox="0 0 1600 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1600" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#071126"/>
+      <stop offset="1" stop-color="#111936"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="350" y1="120" x2="1250" y2="120" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F8CFF"/>
+      <stop offset="0.5" stop-color="#7C6DFF"/>
+      <stop offset="1" stop-color="#3FD0FF"/>
+    </linearGradient>
+    <linearGradient id="line" x1="220" y1="182" x2="1380" y2="182" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4F8CFF" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#4F8CFF" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#4F8CFF" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="0" y="0" width="1600" height="760" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="90"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="760" rx="28" fill="url(#bg)"/>
+  <g filter="url(#blur)" opacity="0.35">
+    <circle cx="300" cy="700" r="240" fill="#4F8CFF"/>
+    <circle cx="1300" cy="90" r="220" fill="#7C6DFF"/>
+  </g>
+
+  <text x="800" y="132" text-anchor="middle" fill="#F3F7FF" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="74" font-weight="800">
+    KtorBoost
+  </text>
+  <text x="800" y="188" text-anchor="middle" fill="url(#accent)" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="40" font-weight="700">
+    Cleaner Ktor Calls, Typed Errors, Production-Ready Handling
+  </text>
+
+  <rect x="220" y="210" width="1160" height="360" rx="24" fill="#0B1430" fill-opacity="0.72" stroke="#2A4A8E"/>
+  <line x1="220" y1="182" x2="1380" y2="182" stroke="url(#line)" stroke-width="2"/>
+
+  <text x="280" y="290" fill="#E9F1FF" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="34" font-weight="600">
+    • Typed NetworkResult with status + headers + parsed API errors
+  </text>
+  <text x="280" y="360" fill="#E9F1FF" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="34" font-weight="600">
+    • Token refresh + request replay helpers for authenticated flows
+  </text>
+  <text x="280" y="430" fill="#E9F1FF" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="34" font-weight="600">
+    • Retry/timeout utilities for transient failures
+  </text>
+  <text x="280" y="500" fill="#E9F1FF" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="34" font-weight="600">
+    • Chainable operators (onSuccess/onError) and suspend variants
+  </text>
+
+  <text x="800" y="655" text-anchor="middle" fill="#9FB7E8" font-family="Inter, Segoe UI, Helvetica, Arial, sans-serif" font-size="28" font-weight="500">
+    Kotlin Multiplatform • Built for Ktor Client
+  </text>
+</svg>

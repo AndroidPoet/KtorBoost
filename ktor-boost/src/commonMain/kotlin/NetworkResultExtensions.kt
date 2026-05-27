@@ -3,6 +3,9 @@ import io.ktor.http.Headers
 public val <T, E> NetworkResult<T, E>.isSuccess: Boolean
     get() = this is NetworkResult.Success
 
+public val <T, E> NetworkResult<T, E>.isFailure: Boolean
+    get() = this !is NetworkResult.Success
+
 public val <T, E> NetworkResult<T, E>.isHttpError: Boolean
     get() = this is NetworkResult.HttpError
 
@@ -106,9 +109,28 @@ public inline fun <T, E> NetworkResult<T, E>.onHttpError(action: (NetworkResult.
     return this
 }
 
+public inline fun <T, E> NetworkResult<T, E>.onResponseDecodingError(
+    action: (NetworkResult.ResponseDecodingError) -> Unit,
+): NetworkResult<T, E> {
+    if (this is NetworkResult.ResponseDecodingError) {
+        action(this)
+    }
+    return this
+}
+
+public inline fun <T, E> NetworkResult<T, E>.onRequestError(action: (NetworkResult.RequestError) -> Unit): NetworkResult<T, E> {
+    if (this is NetworkResult.RequestError) {
+        action(this)
+    }
+    return this
+}
+
 public inline fun <T, E> NetworkResult<T, E>.onFailure(action: (NetworkResult<T, E>) -> Unit): NetworkResult<T, E> {
     if (this !is NetworkResult.Success) {
         action(this)
     }
     return this
 }
+
+public inline fun <T, E> NetworkResult<T, E>.onError(action: (NetworkResult<T, E>) -> Unit): NetworkResult<T, E> =
+    onFailure(action)
