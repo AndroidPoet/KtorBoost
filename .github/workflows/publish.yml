@@ -30,19 +30,4 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
         run: |
-          modules=(
-            ktor-boost
-            ktor-realtime
-            ktor-realtime-websocket
-            ktor-realtime-sse
-            ktor-realtime-reverb
-            ktor-realtime-socketio
-            ktor-realtime-stomp
-            ktor-realtime-graphql
-            ktor-realtime-mqtt
-            ktor-realtime-rsocket
-            ktor-realtime-longpolling
-          )
-          for module in "${modules[@]}"; do
-            ./gradlew -DLibrariesOnly=true ":${module}:publishAllPublicationsToMavenCentralRepository"
-          done
+          ./gradlew -DLibrariesOnly=true publishAndReleaseToMavenCentral --no-configuration-cache
