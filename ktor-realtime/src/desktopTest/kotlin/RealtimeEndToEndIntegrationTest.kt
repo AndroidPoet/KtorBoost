@@ -84,8 +84,142 @@ class RealtimeEndToEndIntegrationTest {
                 client.close()
             }
         }
+
+    @Test
+    fun test_socketIo_realtime_receivesEvent() =
+        runBlocking {
+            if (!integrationEnabled()) return@runBlocking
+            val client = wsClient()
+            var receivedId: Int? = null
+            try {
+                client.realtimeSocketIo<JsonObject, String>(
+                    endpoint = RealtimeEndpoint.SocketIo(url = "ws://127.0.0.1:18080/socketio", eventName = "message"),
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
+                ) {
+                    delay(100)
+                    close()
+                }
+            } finally {
+                client.close()
+            }
+            assertEquals(21, receivedId)
+        }
+
+    @Test
+    fun test_stomp_realtime_receivesMessage() =
+        runBlocking {
+            if (!integrationEnabled()) return@runBlocking
+            val client = wsClient()
+            var receivedId: Int? = null
+            try {
+                client.realtimeStomp<JsonObject, String>(
+                    endpoint = RealtimeEndpoint.Stomp(url = "ws://127.0.0.1:18080/stomp", destination = "/topic/live"),
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
+                ) {
+                    delay(120)
+                    close()
+                }
+            } finally {
+                client.close()
+            }
+            assertEquals(22, receivedId)
+        }
+
+    @Test
+    fun test_graphQl_realtime_receivesNextPayload() =
+        runBlocking {
+            if (!integrationEnabled()) return@runBlocking
+            val client = wsClient()
+            var receivedId: Int? = null
+            try {
+                client.realtimeGraphQlSubscriptions<JsonObject, String>(
+                    endpoint =
+                        RealtimeEndpoint.GraphQlSubscriptions(
+                            url = "ws://127.0.0.1:18080/graphql",
+                            query = "subscription { ping }",
+                        ),
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
+                ) {
+                    delay(120)
+                    close()
+                }
+            } finally {
+                client.close()
+            }
+            assertEquals(23, receivedId)
+        }
+
+    @Test
+    fun test_reverb_realtime_receivesDataEvent() =
+        runBlocking {
+            if (!integrationEnabled()) return@runBlocking
+            val client = wsClient()
+            var receivedId: Int? = null
+            try {
+                client.realtimeReverb<JsonObject, String>(
+                    endpoint =
+                        RealtimeEndpoint.LaravelReverb(
+                            url = "ws://127.0.0.1:18080/reverb",
+                            appKey = "local",
+                            channel = "public-chat",
+                        ),
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
+                ) {
+                    delay(120)
+                    close()
+                }
+            } finally {
+                client.close()
+            }
+            assertEquals(24, receivedId)
+        }
+
+    @Test
+    fun test_mqttOverWebSocket_realtime_receivesPayload() =
+        runBlocking {
+            if (!integrationEnabled()) return@runBlocking
+            val client = wsClient()
+            var receivedId: Int? = null
+            try {
+                client.realtimeMqttOverWebSocket<JsonObject, String>(
+                    endpoint = RealtimeEndpoint.MqttOverWebSocket(url = "ws://127.0.0.1:18080/mqtt", clientId = "client-1"),
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
+                ) {
+                    delay(80)
+                    close()
+                }
+            } finally {
+                client.close()
+            }
+            assertEquals(25, receivedId)
+        }
+
+    @Test
+    fun test_rsocketOverWebSocket_realtime_receivesPayload() =
+        runBlocking {
+            if (!integrationEnabled()) return@runBlocking
+            val client = wsClient()
+            var receivedId: Int? = null
+            try {
+                client.realtimeRSocket<JsonObject, String>(
+                    endpoint = RealtimeEndpoint.RSocket(url = "ws://127.0.0.1:18080/rsocket"),
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
+                ) {
+                    delay(80)
+                    close()
+                }
+            } finally {
+                client.close()
+            }
+            assertEquals(26, receivedId)
+        }
 }
 
 private class IntegrationStop : RuntimeException("stop integration loop")
 
 private fun integrationEnabled(): Boolean = System.getenv("KTORBOOST_RUN_INTEGRATION") == "true"
+
+private fun wsClient(): HttpClient =
+    HttpClient(CIO) {
+        install(WebSockets)
+    }
