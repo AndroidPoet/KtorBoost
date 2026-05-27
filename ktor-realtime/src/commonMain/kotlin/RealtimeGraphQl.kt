@@ -46,18 +46,7 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeGraphQ
         urlString = endpoint.url,
         json = endpoint.json,
         onText = { raw, _ ->
-            val packet = endpoint.json.decodeFromString<JsonObject>(raw)
-            val type = packet["type"]?.jsonPrimitive?.content ?: return@realtimeTextResult
-            when (type) {
-                "connection_ack" -> hooks.onConnectionAck?.invoke()
-                "next" -> {
-                    val payload = packet["payload"]?.jsonObject ?: return@realtimeTextResult
-                    val dataElement = payload["data"] ?: return@realtimeTextResult
-                    onEvent(endpoint.json.decodeFromJsonElement<Incoming>(dataElement))
-                }
-                "error" -> hooks.onProtocolError?.invoke(packet)
-                "complete" -> hooks.onComplete?.invoke()
-            }
+            handleGraphQlFrame(raw, endpoint.json, onEvent, hooks)
         },
         session = {
             val init =
@@ -85,4 +74,25 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeGraphQ
             session()
         },
     )
+}
+
+@PublishedApi
+internal suspend inline fun <reified Incoming> handleGraphQlFrame(
+    raw: String,
+    json: kotlinx.serialization.json.Json,
+    crossinline onEvent: suspend (Incoming) -> Unit,
+    hooks: GraphQlFrameHooks,
+) {
+    val packet = json.decodeFromString<JsonObject>(raw)
+    val type = packet["type"]?.jsonPrimitive?.content ?: return
+    when (type) {
+        "connection_ack" -> hooks.onConnectionAck?.invoke()
+        "next" -> {
+            val payload = packet["payload"]?.jsonObject ?: return
+            val dataElement = payload["data"] ?: return
+            onEvent(json.decodeFromJsonElement<Incoming>(dataElement))
+        }
+        "error" -> hooks.onProtocolError?.invoke(packet)
+        "complete" -> hooks.onComplete?.invoke()
+    }
 }
