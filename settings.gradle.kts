@@ -1,6 +1,5 @@
 rootProject.name = "Ktor Boost"
 
-include(":sample:androidApp")
 include(":ktor-boost")
 include(":ktor-realtime")
 include(":ktor-realtime-websocket")
@@ -12,8 +11,11 @@ include(":ktor-realtime-graphql")
 include(":ktor-realtime-mqtt")
 include(":ktor-realtime-rsocket")
 include(":ktor-realtime-longpolling")
-include(":sample:desktopApp")
-include(":sample:shared")
+if (System.getProperty("LibrariesOnly") != "true") {
+    include(":sample:androidApp")
+    include(":sample:desktopApp")
+    include(":sample:shared")
+}
 
 pluginManagement {
     repositories {

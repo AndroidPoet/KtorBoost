@@ -30,7 +30,7 @@ jobs:
           ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
           ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
         run: |
-          ./gradlew \
+          ./gradlew -DLibrariesOnly=true \
             :ktor-boost:publishAndReleaseToMavenCentral \
             :ktor-realtime:publishAndReleaseToMavenCentral \
             :ktor-realtime-websocket:publishAndReleaseToMavenCentral \
