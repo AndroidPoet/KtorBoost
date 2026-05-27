@@ -1,0 +1,44 @@
+name: Publish All Modules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Publish all modules to Maven Central
+        env:
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
+        run: |
+          ./gradlew \
+            :ktor-boost:publishAndReleaseToMavenCentral \
+            :ktor-realtime:publishAndReleaseToMavenCentral \
+            :ktor-realtime-websocket:publishAndReleaseToMavenCentral \
+            :ktor-realtime-sse:publishAndReleaseToMavenCentral \
+            :ktor-realtime-reverb:publishAndReleaseToMavenCentral \
+            :ktor-realtime-socketio:publishAndReleaseToMavenCentral \
+            :ktor-realtime-stomp:publishAndReleaseToMavenCentral \
+            :ktor-realtime-graphql:publishAndReleaseToMavenCentral \
+            :ktor-realtime-mqtt:publishAndReleaseToMavenCentral \
+            :ktor-realtime-rsocket:publishAndReleaseToMavenCentral \
+            :ktor-realtime-longpolling:publishAndReleaseToMavenCentral
