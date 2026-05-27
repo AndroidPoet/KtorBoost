@@ -55,7 +55,7 @@ public suspend inline fun <reified Incoming, Outgoing> HttpClient.realtimeResult
             realtimeStompResult(endpoint, onEvent, session)
 
         is RealtimeEndpoint.GraphQlSubscriptions ->
-            realtimeGraphQlSubscriptionsResult(endpoint, onEvent, session)
+            realtimeGraphQlSubscriptionsResult(endpoint, onEvent, hooks = GraphQlFrameHooks(), session = session)
 
         is RealtimeEndpoint.MqttOverWebSocket ->
             realtimeMqttOverWebSocketResult(endpoint, onEvent, session)

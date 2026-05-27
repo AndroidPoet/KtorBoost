@@ -40,6 +40,20 @@ For typed WebSocket and SSE helpers, add the optional realtime module:
 implementation("io.github.androidpoet:ktor-realtime:$version")
 ```
 
+Or pick protocol-specific modules:
+
+```kotlin
+implementation("io.github.androidpoet:ktor-realtime-websocket:$version")
+implementation("io.github.androidpoet:ktor-realtime-sse:$version")
+implementation("io.github.androidpoet:ktor-realtime-reverb:$version")
+implementation("io.github.androidpoet:ktor-realtime-socketio:$version")
+implementation("io.github.androidpoet:ktor-realtime-stomp:$version")
+implementation("io.github.androidpoet:ktor-realtime-graphql:$version")
+implementation("io.github.androidpoet:ktor-realtime-mqtt:$version")
+implementation("io.github.androidpoet:ktor-realtime-rsocket:$version")
+implementation("io.github.androidpoet:ktor-realtime-longpolling:$version")
+```
+
 ## Features
 
 - Simple `Result<T>` wrappers for Ktor HTTP calls.
@@ -181,7 +195,7 @@ httpClient.realtime<ChatEvent, ChatCommand>(
 )
 ```
 
-`WebSocket` and `ServerSentEvents` are implemented now. Reverb, Socket.IO, STOMP, GraphQL subscriptions, MQTT-over-WS, RSocket, and long-polling are modeled with stable endpoint naming and clear unsupported errors until adapters are added.
+`WebSocket`, `ServerSentEvents`, Reverb, Socket.IO, STOMP, GraphQL subscriptions, MQTT-over-WS, RSocket, and long-polling are implemented with protocol-specific entrypoints.
 Protocol-specific entrypoints are split as dedicated APIs (`realtimeReverb`, `realtimeSocketIo`, `realtimeStomp`, `realtimeGraphQlSubscriptions`, `realtimeMqttOverWebSocket`, `realtimeRSocket`, and `realtimeLongPolling`).
 
 You can also use convenience helpers:
