@@ -198,6 +198,25 @@ httpClient.realtime<ChatEvent, ChatCommand>(
 `WebSocket`, `ServerSentEvents`, Reverb, Socket.IO, STOMP, GraphQL subscriptions, MQTT-over-WS, RSocket, and long-polling are implemented with protocol-specific entrypoints.
 Protocol-specific entrypoints are split as dedicated APIs (`realtimeReverb`, `realtimeSocketIo`, `realtimeStomp`, `realtimeGraphQlSubscriptions`, `realtimeMqttOverWebSocket`, `realtimeRSocket`, and `realtimeLongPolling`).
 
+## Realtime Integration Tests
+
+End-to-end realtime tests are available for WebSocket, SSE, and long-polling.
+
+```bash
+./gradlew realtimeIntegrationTest
+```
+
+This task:
+- starts Docker Compose test infrastructure from `scripts/realtime-integration/docker-compose.yml`
+- runs `:ktor-realtime:desktopIntegrationTest`
+- tears down the containers
+
+If Docker is not installed/running, use local unit tests instead:
+
+```bash
+./gradlew :ktor-realtime:desktopTest
+```
+
 You can also use convenience helpers:
 
 ```kotlin

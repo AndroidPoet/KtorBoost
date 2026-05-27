@@ -1,4 +1,5 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.gradle.api.tasks.testing.Test
 
 plugins {
     kotlin("multiplatform")
@@ -38,6 +39,14 @@ kotlin {
                 implementation(libs.kotlin.test)
             }
         }
+        val desktopTest by getting {
+            dependencies {
+                implementation(libs.ktor.client.cio)
+                implementation(libs.ktor.server.core)
+                implementation(libs.ktor.server.cio)
+                implementation(libs.ktor.server.websockets)
+            }
+        }
         val androidMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -49,6 +58,18 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
         }
     }
+}
+
+tasks.register<Test>("desktopIntegrationTest") {
+    description = "Runs realtime end-to-end integration tests."
+    group = "verification"
+    val desktopTest = tasks.named<Test>("desktopTest").get()
+    testClassesDirs = desktopTest.testClassesDirs
+    classpath = desktopTest.classpath
+    filter {
+        includeTestsMatching("*IntegrationTest")
+    }
+    environment("KTORBOOST_RUN_INTEGRATION", "true")
 }
 
 android {

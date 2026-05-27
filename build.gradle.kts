@@ -24,3 +24,21 @@ tasks.register<Copy>("setUpGitHooks") {
     from("$rootDir/.hooks")
     into("$rootDir/.git/hooks")
 }
+
+val realtimeComposeFile = "$rootDir/scripts/realtime-integration/docker-compose.yml"
+
+tasks.register<Exec>("realtimeIntegrationUp") {
+    group = "verification"
+    commandLine("docker", "compose", "-f", realtimeComposeFile, "up", "-d", "--build")
+}
+
+tasks.register<Exec>("realtimeIntegrationDown") {
+    group = "verification"
+    commandLine("docker", "compose", "-f", realtimeComposeFile, "down", "--remove-orphans")
+}
+
+tasks.register("realtimeIntegrationTest") {
+    group = "verification"
+    dependsOn("realtimeIntegrationUp", ":ktor-realtime:desktopIntegrationTest")
+    finalizedBy("realtimeIntegrationDown")
+}

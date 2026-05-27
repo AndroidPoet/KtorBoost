@@ -6,6 +6,7 @@ android-minSdk = "24"
 android-compileSdk = "33"
 ktor-client = "2.3.6"
 ktor-client-mock="2.3.6"
+ktor-server = "2.3.6"
 kotlinx-serialization-json = "1.6.0"
 
 
@@ -13,6 +14,10 @@ kotlinx-serialization-json = "1.6.0"
 ktor-client = { module = "io.ktor:ktor-client-core", version.ref = "ktor-client" }
 ktor-client-websockets = { module = "io.ktor:ktor-client-websockets", version.ref = "ktor-client" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor-client-mock" }
+ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor-client" }
+ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor-server" }
+ktor-server-cio = { module = "io.ktor:ktor-server-cio", version.ref = "ktor-server" }
+ktor-server-websockets = { module = "io.ktor:ktor-server-websockets", version.ref = "ktor-server" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 ktor-desktop = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor-client" }

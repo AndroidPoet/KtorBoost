@@ -1,0 +1,9 @@
+services:
+  realtime-test-server:
+    image: python:3.12-alpine
+    working_dir: /app
+    command: sh -c "pip install --no-cache-dir aiohttp==3.10.5 && python realtime_server.py"
+    volumes:
+      - ./scripts/realtime-integration/realtime_server.py:/app/realtime_server.py:ro
+    ports:
+      - "18080:18080"
