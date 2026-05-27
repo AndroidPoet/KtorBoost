@@ -1,48 +1,28 @@
-name: Publish All Modules
+name: Publish
 
 on:
+  release:
+    types: [created]
   workflow_dispatch:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
+    runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: '17'
+          distribution: zulu
+          java-version: 17
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+      - uses: gradle/actions/setup-gradle@v4
 
-      - name: Publish all modules to Maven Central
+      - name: Publish and release to Maven Central
+        run: ./gradlew publishAndReleaseToMavenCentral --no-configuration-cache
         env:
-          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
-          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_IN_MEMORY_KEY }}
-          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
-          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_IN_MEMORY_KEY_ID }}
-        run: |
-          modules=(
-            ktor-boost
-            ktor-realtime
-            ktor-realtime-websocket
-            ktor-realtime-sse
-            ktor-realtime-reverb
-            ktor-realtime-socketio
-            ktor-realtime-stomp
-            ktor-realtime-graphql
-            ktor-realtime-mqtt
-            ktor-realtime-rsocket
-            ktor-realtime-longpolling
-          )
-          for module in "${modules[@]}"; do
-            ./gradlew -DLibrariesOnly=true ":${module}:publishAndReleaseToMavenCentral" --no-configuration-cache
-          done
+          ORG_GRADLE_PROJECT_mavenCentralUsername: ${{ secrets.MAVEN_CENTRAL_USERNAME || secrets.OSSRH_USERNAME }}
+          ORG_GRADLE_PROJECT_mavenCentralPassword: ${{ secrets.MAVEN_CENTRAL_PASSWORD || secrets.OSSRH_PASSWORD }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyId: ${{ secrets.SIGNING_KEY_ID || secrets.SIGNING_IN_MEMORY_KEY_ID }}
+          ORG_GRADLE_PROJECT_signingInMemoryKey: ${{ secrets.SIGNING_KEY || secrets.SIGNING_IN_MEMORY_KEY }}
+          ORG_GRADLE_PROJECT_signingInMemoryKeyPassword: ${{ secrets.SIGNING_PASSWORD || secrets.SIGNING_IN_MEMORY_KEY_PASSWORD }}
