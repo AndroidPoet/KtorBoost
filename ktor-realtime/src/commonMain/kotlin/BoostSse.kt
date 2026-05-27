@@ -4,7 +4,6 @@ import io.ktor.client.request.header
 import io.ktor.client.request.prepareGet
 import io.ktor.http.HttpHeaders
 import io.ktor.utils.io.readUTF8Line
-import java.io.EOFException
 import kotlinx.serialization.decodeFromString
 
 public data class RealtimeServerSentEvent(
@@ -79,12 +78,7 @@ public suspend fun HttpClient.realtimeSse(
         val blockLines = mutableListOf<String>()
 
         while (!channel.isClosedForRead) {
-            val line =
-                try {
-                    channel.readUTF8Line() ?: break
-                } catch (_: EOFException) {
-                    break
-                }
+            val line = channel.readUTF8Line() ?: break
             if (line.isEmpty()) {
                 parseSseEventBlock(blockLines)?.let { onEvent(it) }
                 blockLines.clear()
