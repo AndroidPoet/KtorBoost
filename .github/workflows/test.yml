@@ -17,4 +17,4 @@ jobs:
           java-version: '17'
       - name: Run ktor-boost desktop tests
         shell: bash
-        run: ./gradlew :ktor-boost:desktopTest
+        run: ./gradlew :ktor-boost:desktopTest :ktor-realtime:desktopTest

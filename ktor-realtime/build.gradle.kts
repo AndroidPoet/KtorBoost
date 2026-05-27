@@ -13,15 +13,13 @@ kotlin {
     }
     jvm("desktop")
 
-    // jvm()
-
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
-            baseName = "ktor-boost"
+            baseName = "ktor-realtime"
             isStatic = true
         }
     }
@@ -29,20 +27,18 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                api(project(":ktor-boost"))
                 implementation(libs.ktor.client)
+                implementation(libs.ktor.client.websockets)
                 implementation(libs.kotlinx.serialization.json)
             }
         }
         val commonTest by getting {
             dependencies {
-                implementation(libs.ktor.client.mock)
                 implementation(libs.kotlin.test)
             }
         }
-        val androidMain by getting {
-            dependencies {
-            }
-        }
+        val androidMain by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -52,21 +48,14 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
         }
-        val desktopMain by getting {
-            dependencies {
-                implementation(libs.ktor.desktop)
-            }
-        }
     }
 }
 
 android {
     compileSdk = (findProperty("android.compileSdk") as String).toInt()
-    namespace = "com.androidpoet.ktor.boost"
+    namespace = "com.androidpoet.ktor.realtime"
 
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
-    sourceSets["main"].res.srcDirs("src/androidMain/res")
-    sourceSets["main"].resources.srcDirs("src/commonMain/resources")
 
     defaultConfig {
         minSdk = (findProperty("android.minSdk") as String).toInt()
@@ -81,16 +70,14 @@ android {
 }
 
 mavenPublishing {
-//    publishToMavenCentral(SonatypeHost.DEFAULT)
-    // or when publishing to https://s01.oss.sonatype.org
     publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
     signAllPublications()
-    coordinates("io.github.androidpoet", "ktor-boost", "1.0.0")
+    coordinates("io.github.androidpoet", "ktor-realtime", "1.0.0")
 
     pom {
-        name.set("ktor-boost")
-        description.set("Simplifying Ktor for Easier Development.")
-        inceptionYear.set("2023")
+        name.set("ktor-realtime")
+        description.set("Typed WebSocket and SSE realtime helpers for KtorBoost.")
+        inceptionYear.set("2026")
         url.set("https://github.com/AndroidPoet/KtorBoost/")
         licenses {
             license {

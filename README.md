@@ -34,6 +34,12 @@ sourceSets {
 }
 ```
 
+For typed WebSocket and SSE helpers, add the optional realtime module:
+
+```kotlin
+implementation("io.github.androidpoet:ktor-realtime:$version")
+```
+
 ## Features
 
 - Simple `Result<T>` wrappers for Ktor HTTP calls.
@@ -45,6 +51,9 @@ sourceSets {
 - Async helpers returning `Deferred<Result<T>>`.
 - Request builder shortcuts for bearer auth, query params, JSON bodies, and form bodies.
 - Suspend-friendly `Result` helpers.
+- Boost operators for typed HTTP errors, recovery helpers, and app-friendly failure messages.
+- Optional `ktor-realtime` module for typed WebSocket and SSE event flows.
+- Unified realtime endpoint model for WebSocket, SSE, Reverb, Socket.IO, STOMP, GraphQL subscriptions, MQTT-over-WS, RSocket, and long-polling adapters.
 
 ## Quick Start
 
@@ -123,6 +132,57 @@ when (result) {
 ```
 
 `NetworkResult` works with or without Ktor's `expectSuccess` setting.
+
+## Boost Operators
+
+Use Boost operators when you want a more expressive app-facing API:
+
+```kotlin
+httpClient.getBoost<User, ApiError>("users/me", json)
+    .onSuccess { result ->
+        render(result.body)
+    }
+    .onUnauthorized {
+        session.refreshToken()
+    }
+    .onRateLimited { rateLimit, _ ->
+        scheduleRetry(rateLimit.retryAfterSeconds)
+    }
+    .recoverRequestError {
+        cache.user()
+    }
+    .onError { result ->
+        showMessage(result.messageOrNull ?: "Something went wrong")
+    }
+```
+
+For realtime chat or presence streams, add `ktor-realtime`.
+Detailed chat module docs: [docs/chat-module.md](docs/chat-module.md).
+
+```kotlin
+httpClient.realtimeChat<ChatEvent, ChatCommand>(
+    urlString = "wss://example.com/chat",
+    onMessage = { event ->
+        render(event)
+    },
+) {
+    sendJson(ChatCommand.Join(roomId = "general"))
+}
+```
+
+Protocol-neutral entrypoint:
+
+```kotlin
+val endpoint = RealtimeEndpoint.WebSocket("wss://example.com/realtime")
+
+httpClient.realtime<ChatEvent, ChatCommand>(
+    endpoint = endpoint,
+    onEvent = { event -> render(event) },
+)
+```
+
+`WebSocket` and `ServerSentEvents` are implemented now. Reverb, Socket.IO, STOMP, GraphQL subscriptions, MQTT-over-WS, RSocket, and long-polling are modeled with stable endpoint naming and clear unsupported errors until adapters are added.
+Protocol-specific entrypoints are split as dedicated APIs (`realtimeReverb`, `realtimeSocketIo`, `realtimeStomp`, `realtimeGraphQlSubscriptions`, `realtimeMqttOverWebSocket`, `realtimeRSocket`, and `realtimeLongPolling`).
 
 You can also use convenience helpers:
 

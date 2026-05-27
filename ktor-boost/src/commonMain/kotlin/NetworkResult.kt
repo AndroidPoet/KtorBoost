@@ -38,6 +38,7 @@ public suspend inline fun <reified T, E> HttpClient.requestNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
+    successStatusCodes: IntRange = 200..299,
 ): NetworkResult<T, E> {
     return try {
         val response =
@@ -46,7 +47,7 @@ public suspend inline fun <reified T, E> HttpClient.requestNetworkResult(
                 block()
             }
 
-        if (response.status.value !in 200..299) {
+        if (response.status.value !in successStatusCodes) {
             return response.toHttpError(decodeErrorBody)
         }
 
@@ -82,43 +83,50 @@ public suspend inline fun <reified T, E> HttpClient.getNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Get, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Get, urlString, block, decodeErrorBody, successStatusCodes)
 
 public suspend inline fun <reified T, E> HttpClient.postNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Post, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Post, urlString, block, decodeErrorBody, successStatusCodes)
 
 public suspend inline fun <reified T, E> HttpClient.putNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Put, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Put, urlString, block, decodeErrorBody, successStatusCodes)
 
 public suspend inline fun <reified T, E> HttpClient.deleteNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Delete, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Delete, urlString, block, decodeErrorBody, successStatusCodes)
 
 public suspend inline fun <reified T, E> HttpClient.patchNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Patch, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Patch, urlString, block, decodeErrorBody, successStatusCodes)
 
 public suspend inline fun <reified T, E> HttpClient.headNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Head, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Head, urlString, block, decodeErrorBody, successStatusCodes)
 
 public suspend inline fun <reified T, E> HttpClient.optionsNetworkResult(
     urlString: String,
     noinline block: HttpRequestBuilder.() -> Unit = {},
     noinline decodeErrorBody: suspend (String) -> E? = { null },
-): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Options, urlString, block, decodeErrorBody)
+    successStatusCodes: IntRange = 200..299,
+): NetworkResult<T, E> = requestNetworkResult(HttpMethod.Options, urlString, block, decodeErrorBody, successStatusCodes)
 
 @PublishedApi
 internal suspend inline fun <E> io.ktor.client.statement.HttpResponse.toHttpError(

@@ -2,6 +2,7 @@ rootProject.name = "Ktor Boost"
 
 include(":sample:androidApp")
 include(":ktor-boost")
+include(":ktor-realtime")
 include(":sample:desktopApp")
 include(":sample:shared")
 
