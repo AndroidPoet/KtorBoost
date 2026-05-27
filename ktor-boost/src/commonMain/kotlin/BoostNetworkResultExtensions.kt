@@ -13,7 +13,7 @@ public inline fun <T, E> NetworkResult<T, E>.onRateLimited(
     action: (BoostError.RateLimited, NetworkResult.HttpError<E>) -> Unit,
 ): NetworkResult<T, E> {
     if (this is NetworkResult.HttpError) {
-        val error = boostError
+        val error = networkError
         if (error is BoostError.RateLimited) {
             action(error, this)
         }
@@ -33,7 +33,7 @@ public inline fun <T, E> NetworkResult<T, E>.onServerError(
 public inline fun <T, E> NetworkResult<T, E>.onOffline(
     action: (NetworkResult.RequestError) -> Unit,
 ): NetworkResult<T, E> {
-    if (this is NetworkResult.RequestError && boostError is BoostError.Offline) {
+    if (this is NetworkResult.RequestError && networkError is BoostError.Offline) {
         action(this)
     }
     return this
@@ -42,7 +42,7 @@ public inline fun <T, E> NetworkResult<T, E>.onOffline(
 public inline fun <T, E> NetworkResult<T, E>.onTimeout(
     action: (NetworkResult.RequestError) -> Unit,
 ): NetworkResult<T, E> {
-    if (this is NetworkResult.RequestError && boostError is BoostError.Timeout) {
+    if (this is NetworkResult.RequestError && networkError is BoostError.Timeout) {
         action(this)
     }
     return this
@@ -76,7 +76,7 @@ public inline fun <T, E> NetworkResult<T, E>.recoverIf(
     predicate: (BoostError) -> Boolean,
     fallback: (BoostError) -> T,
 ): NetworkResult<T, E> {
-    val error = boostError ?: return this
+    val error = networkError ?: return this
     return if (predicate(error)) {
         NetworkResult.Success(fallback(error), RECOVERED_STATUS_CODE, Headers.Empty)
     } else {

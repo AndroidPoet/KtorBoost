@@ -152,7 +152,7 @@ when (result) {
 Use Boost operators when you want a more expressive app-facing API:
 
 ```kotlin
-httpClient.getBoost<User, ApiError>("users/me", json)
+httpClient.getResult<User, ApiError>("users/me", json)
     .onSuccess { result ->
         render(result.body)
     }

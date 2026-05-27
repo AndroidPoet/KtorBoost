@@ -74,7 +74,9 @@ public sealed class BoostError {
     }
 }
 
-public val NetworkResult<*, *>.boostError: BoostError?
+public typealias NetworkError = BoostError
+
+public val NetworkResult<*, *>.networkError: NetworkError?
     get() =
         when (this) {
             is NetworkResult.Success -> null
@@ -82,11 +84,18 @@ public val NetworkResult<*, *>.boostError: BoostError?
                 decodeFailure?.let { BoostError.ErrorBodyDecodingFailed(it) }
                     ?: classifyHttpError(statusCode, headers)
             is NetworkResult.ResponseDecodingError -> BoostError.ResponseDecodingFailed(cause)
-            is NetworkResult.RequestError -> classifyRequestError(cause)
+            is NetworkResult.RequestError -> classifyRequestFailure(cause)
         }
 
+@Deprecated(
+    message = "Use networkError for neutral API naming.",
+    replaceWith = ReplaceWith("networkError"),
+)
+public val NetworkResult<*, *>.boostError: BoostError?
+    get() = networkError
+
 public val NetworkResult<*, *>.messageOrNull: String?
-    get() = boostError?.message
+    get() = networkError?.message
 
 public fun classifyHttpError(
     statusCode: Int,
@@ -101,7 +110,14 @@ public fun classifyHttpError(
         else -> BoostError.HttpFailure(statusCode)
     }
 
+@Deprecated(
+    message = "Use classifyRequestFailure for neutral API naming.",
+    replaceWith = ReplaceWith("classifyRequestFailure(cause)"),
+)
 public fun classifyRequestError(cause: Throwable): BoostError =
+    classifyRequestFailure(cause)
+
+public fun classifyRequestFailure(cause: Throwable): NetworkError =
     when (cause) {
         is HttpRequestTimeoutException -> BoostError.Timeout(cause)
         is IOException -> BoostError.Offline(cause)
