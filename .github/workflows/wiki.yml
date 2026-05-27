@@ -1,10 +1,6 @@
 name: Publish Wiki
 on:
-  push:
-    branches:
-      - main
-    paths-ignore:
-      - sample
+  workflow_dispatch:
 
 concurrency:
   group: publish-wiki
