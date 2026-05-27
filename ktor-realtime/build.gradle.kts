@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.tasks.testing.Test
 
 plugins {
@@ -91,8 +90,7 @@ android {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
-    signAllPublications()
+
     coordinates("io.github.androidpoet", "ktor-realtime", "1.0.0")
 
     pom {

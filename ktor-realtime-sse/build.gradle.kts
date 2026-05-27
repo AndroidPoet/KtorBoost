@@ -1,4 +1,3 @@
-import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     kotlin("multiplatform")
@@ -62,8 +61,7 @@ android {
 }
 
 mavenPublishing {
-    publishToMavenCentral(SonatypeHost.S01, automaticRelease = true)
-    signAllPublications()
+
     coordinates("io.github.androidpoet", "ktor-realtime-sse", "1.0.0")
 
     pom {
