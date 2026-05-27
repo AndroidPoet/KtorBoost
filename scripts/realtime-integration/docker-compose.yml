@@ -4,6 +4,11 @@ services:
     working_dir: /app
     command: sh -c "pip install --no-cache-dir aiohttp==3.10.5 && python realtime_server.py"
     volumes:
-      - ./scripts/realtime-integration/realtime_server.py:/app/realtime_server.py:ro
+      - ./realtime_server.py:/app/realtime_server.py:ro
     ports:
       - "18080:18080"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - http://127.0.0.1:18080/poll >/dev/null 2>&1 || exit 1"]
+      interval: 2s
+      timeout: 2s
+      retries: 20

@@ -29,7 +29,7 @@ val realtimeComposeFile = "$rootDir/scripts/realtime-integration/docker-compose.
 
 tasks.register<Exec>("realtimeIntegrationUp") {
     group = "verification"
-    commandLine("docker", "compose", "-f", realtimeComposeFile, "up", "-d", "--build")
+    commandLine("docker", "compose", "-f", realtimeComposeFile, "up", "-d", "--build", "--wait")
 }
 
 tasks.register<Exec>("realtimeIntegrationDown") {

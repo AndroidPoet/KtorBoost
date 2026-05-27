@@ -1,8 +1,12 @@
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
+import io.ktor.client.plugins.websocket.WebSockets
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonObject
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonPrimitive
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -16,23 +20,27 @@ class RealtimeEndToEndIntegrationTest {
     fun test_webSocket_realtime_receivesEchoPayload() =
         runBlocking {
             if (!integrationEnabled()) return@runBlocking
-            val client = HttpClient(CIO)
-            var received: Message? = null
+            val client =
+                HttpClient(CIO) {
+                    install(WebSockets)
+                }
+            var receivedId: Int? = null
 
             try {
-                client.realtime<Message, Message>(
+                client.realtime<JsonObject, String>(
                     urlString = wsUrl,
                     json = json,
-                    onEvent = { received = it },
+                    onEvent = { receivedId = it["id"]?.jsonPrimitive?.int },
                 ) {
-                    sendJson(Message(42))
+                    sendText("""{"id":42}""")
+                    delay(100)
                     close()
                 }
             } finally {
                 client.close()
             }
 
-            assertEquals(42, received?.id)
+            assertEquals(42, receivedId)
         }
 
     @Test
@@ -40,18 +48,18 @@ class RealtimeEndToEndIntegrationTest {
         runBlocking {
             if (!integrationEnabled()) return@runBlocking
             val client = HttpClient(CIO)
-            var received: Message? = null
+            var receivedId: Int? = null
 
             try {
                 client.realtimeSseJson(
                     endpoint = RealtimeEndpoint.ServerSentEvents("$baseUrl/sse", json),
-                    onEvent = { message: Message -> received = message },
+                    onEvent = { message: JsonObject -> receivedId = message["id"]?.jsonPrimitive?.int },
                 )
             } finally {
                 client.close()
             }
 
-            assertEquals(7, received?.id)
+            assertEquals(7, receivedId)
         }
 
     @Test
@@ -62,7 +70,7 @@ class RealtimeEndToEndIntegrationTest {
 
             try {
                 val result =
-                    client.realtimeLongPollingResult<Message>(
+                    client.realtimeLongPollingResult<JsonObject>(
                         endpoint = RealtimeEndpoint.LongPolling(
                             url = "$baseUrl/poll",
                             json = json,
@@ -77,11 +85,6 @@ class RealtimeEndToEndIntegrationTest {
             }
         }
 }
-
-@Serializable
-private data class Message(
-    val id: Int,
-)
 
 private class IntegrationStop : RuntimeException("stop integration loop")
 
