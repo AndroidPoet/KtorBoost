@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="art/logo.svg" width="800" alt="KtorBoost">
-</p>
-
 <h1 align="center">KtorBoost</h1>
 
 <p align="center">
